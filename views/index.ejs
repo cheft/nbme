@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/javascripts/bootstrap3/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/javascripts/bootstrap3/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+    <link href='/stylesheets/style.css' rel='stylesheet'/>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+	<div>
+		<input type="button" class="btn btn-primary" value="登录" onclick='javascript:location.href="/users/toLogin"'>
+		<input type="button" class="btn btn-primary" value="注册" onclick='javascript:location.href="/users/toReg"'>
+	</div>
+
+    <script src="/javascripts/jquery/jquery-1.10.2.min.js"></script>
+    <script src="/javascripts/bootstrap3/js/bootstrap.min.js"></script>
+  </body>
+</html>
