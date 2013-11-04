@@ -13,7 +13,6 @@ exports.createService = function() {
 		},
 
 		update: function(id, user, callback) {
-			console.log({$set: user});
 			manager.update({_id: id}, {$set: user}, null, callback);
 		},
 		
