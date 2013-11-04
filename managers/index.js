@@ -1,27 +1,46 @@
-var mongoose = require('mongoose');
-
-exports.createManager = function() {
-	mongoose.connect('mongodb://localhost/blog');
-	var db = mongoose.connection;
+exports.createManager = function(model) {
 	var manager = {
-		open: function() {
-			console.log(db);
-			return 'open';
+		create: function(doc, callback) {
+			model.create(doc, function (err) {
+		        if(err) return callback(err);
+		        return callback(doc);
+		    });
 		},
-		get: function() {
-
+		del: function(query, callback) {
+			model.remove(query, function(err) {
+		        if(err) return callback(err);
+		        return callback(true);
+			});
 		},
-		list: function() {
-
+		update: function(conditions, update, options, callback) {
+		    model.update(conditions, update, options, function (err) {
+		        if(err) return callback(err);
+		        return callback(true);
+		    });			
 		},
-		create: function() {
-
+		get: function(id, callback) {
+			model.findOne({_id:id}, function(err, model){
+		        if(err) return callback(err, null);
+		        return callback(null, model);
+		    });
 		},
-		update: function() {
-
+		count: function(query, callback) {
+			model.count(query, function(err, model){
+				if(error) return callback(error, null);
+        		return callback(null, model);
+			});
 		},
-		delete: function() {
-
+		query: function(query, fileds, opt, callback) {
+			model.find(query, fileds, opt, function(err, model) {
+				if(err) return callback(err, null);
+				return  callback(null, model);	
+			});
+		},
+		list: function(callback) {
+			model.find({}, function(err, model) {
+				if(err) return callback(err, null);
+				return callback(null, model);
+			});
 		}
 	};
 	return manager;
