@@ -1,19 +1,18 @@
-var model = require('../models').user;
+var model = require('../models').cat;
 var manager = require('../managers').createManager(model);
 
 exports.createService = function() {
-
 	var service = {
-		create: function(user, callback) {
-			manager.create(user, callback);
+		create: function(cat, callback) {
+			manager.create(cat, callback);
 		},
 		
 		del: function(id, callback) {
 			manager.del({_id: id}, callback);
 		},
 
-		update: function(id, user, callback) {
-			manager.update({_id: id}, {$set: user}, null, callback);
+		update: function(id, cat, callback) {
+			manager.update({_id: id}, {$set: cat}, null, callback);
 		},
 
 		get: function(id, callback) {
