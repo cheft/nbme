@@ -1,7 +1,6 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var fs = require('fs');
 
 var app = express();
 
@@ -22,12 +21,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var routePath = path.join(__dirname, 'routes');
-fs.readdirSync(routePath).forEach(function (file) {
-	require(routePath + '/' + file).createRoute(app);
-	console.log('[startup] loading route ' + file + ' ...');
-});
+require(path.join(__dirname, 'models')).scan(app);
+require(path.join(__dirname, 'routes') + '/main').createRoute(app);
 
 http.createServer(app).listen(app.get('port'), function(){
-  	console.log('Express server listening on port ' + app.get('port'));
+	console.log('Express server listening on port ' + app.get('port'));
 });

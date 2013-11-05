@@ -9,6 +9,6 @@
     "express": "latest",
     "ejs": "latest",
     "mongoose": "latest",
-    "colors": "latest"
+    "underscore": "latest"
   }
 }

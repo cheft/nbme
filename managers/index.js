@@ -16,7 +16,7 @@ exports.createManager = function(model) {
 		    model.update(conditions, update, options, function (err) {
 		        if(err) return callback(err);
 		        return callback(true);
-		    });			
+		    });
 		},
 		get: function(id, callback) {
 			model.findOne({_id:id}, function(err, model){
@@ -27,13 +27,13 @@ exports.createManager = function(model) {
 		count: function(query, callback) {
 			model.count(query, function(err, model){
 				if(error) return callback(error, null);
-        		return callback(null, model);
+				return callback(null, model);
 			});
 		},
 		query: function(query, fileds, opt, callback) {
 			model.find(query, fileds, opt, function(err, model) {
 				if(err) return callback(err, null);
-				return  callback(null, model);	
+				return  callback(null, model);
 			});
 		},
 		list: function(callback) {
@@ -44,4 +44,4 @@ exports.createManager = function(model) {
 		}
 	};
 	return manager;
-}
+};

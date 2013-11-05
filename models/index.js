@@ -15,11 +15,15 @@ db.once('open', function () {
     console.log('%s has been connected.', config.connectionUrl);
 });
 
-var models_path = __dirname + '/../models'
-fs.readdirSync(models_path).forEach(function (file) {
-	if('index.js' != file) {
-		var modelName = file.replace('.js', '');
-		var model = require(models_path + '/' + file).createModel();
-	    exports[modelName] = mongoose.model(modelName, model);
-	}
-});
+exports.scan = function(app) {
+	var models_path = __dirname + '/../models';
+	var routes_path = __dirname + '/../routes';
+	fs.readdirSync(models_path).forEach(function (file) {
+		if('index.js' != file) {
+			var modelName = file.replace('.js', '');
+			var model = require(models_path + '/' + file).createModel();
+		    exports[modelName] = mongoose.model(modelName, model);
+		    require(routes_path).createRoute(app, modelName);
+		}
+	});
+};
