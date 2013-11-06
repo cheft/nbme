@@ -1,19 +1,6 @@
-App = Ember.Application.createWithMixins(Bootstrap.Register);
+/*global Ember, DS, Todos:true */
+window.Todos = Ember.Application.create();
 
-App.Router.map(function() {
-    this.resource('index', {
-        path: '/'
-    });
-    this.route('about', {
-        path: '/about'
-    });
-    this.route('favorites', {
-        path: '/favs'
-    });
-});
-
-App.IndexRoute = Ember.Route.extend({
-  setupController: function(controller) {
-    controller.set('title', 'My App');
-  }
+Todos.ApplicationAdapter = DS.LSAdapter.extend({
+	namespace: 'todos-emberjs'
 });

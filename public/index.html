@@ -1,43 +1,77 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>nbme</title>
-    <meta http-equiv="Content-Type" content="text/html; Charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
-    <link href="/lib/ember/css/normalize.css" rel="stylesheet" media="screen">
-    <link href='/css/style.css' rel='stylesheet' media="screen" />
-</head>
-
-<body>
-    <p>Welcome to nbme</p>
-    <div>
-        <input type="button" class="btn btn-primary" value="登录" onclick='javascript:location.href="/users/toLogin"'>
-        <input type="button" class="btn btn-primary" value="注册" onclick='javascript:location.href="/users/toReg"'>
-    </div>
-    <br />
-    <h2>BootStrap for Ember</h2>
-    <script type="text/x-handlebars">
-        <h1>{{title}}</h1>
-
-        <div>
-            {{outlet}}
-        </div>
-        {{#link-to 'index'}}Index{{/link-to}}
-        <nav>
-            {{#link-to 'about'}}About{{/link-to}}
-            {{#link-to 'favorites'}}Favorites{{/link-to}}
-        </nav>
-    </script>
-
-    <script src="/lib/ember/js/libs/jquery-1.9.1.js"></script>
-    <script src="/lib/ember/js/libs/handlebars-1.0.0.js"></script>
-    <script src="/lib/ember/js/libs/ember-1.1.2.js"></script>
-    <script src="/lib/bootstrap-ember/js/bs-core.min.js"></script>
-    <script src="/lib/bootstrap-ember/js/bs-alert.min.js"></script>
-    <script src="/js/app.js"></script>
-</body>
-
+<!doctype html>
+<html lang="en" data-framework="emberjs">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>ember.js • TodoMVC</title>
+		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
+	</head>
+	<body>
+		<script type="text/x-handlebars" data-template-name="todos">
+			<section id="todoapp">
+				<header id="header">
+					<h1>todos</h1>
+					{{input id="new-todo" type="text" value=newTitle action="createTodo" placeholder="What needs to be done?"}}
+				</header>
+				{{#if length}}
+					<section id="main">
+						<ul id="todo-list">
+							{{#each filteredTodos itemController="todo"}}
+								<li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
+									{{#if isEditing}}
+										{{edit-todo class="edit" value=bufferedTitle focus-out="doneEditing" insert-newline="doneEditing" escape-press="cancelEditing"}}
+									{{else}}
+										{{input type="checkbox" class="toggle" checked=isCompleted}}
+										<label {{action "editTodo" on="doubleClick"}}>{{title}}</label>
+										<button {{action "removeTodo"}} class="destroy"></button>
+									{{/if}}
+									</li>
+							{{/each}}
+						</ul>
+						{{input type="checkbox" id="toggle-all" checked=allAreDone}}
+					</section>
+					<footer id="footer">
+						<span id="todo-count">{{{remainingFormatted}}}</span>
+						<ul id="filters">
+							<li>
+								{{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
+							</li>
+							<li>
+								{{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
+							</li>
+							<li>
+								{{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
+							</li>
+						</ul>
+						{{#if hasCompleted}}
+							<button id="clear-completed" {{action "clearCompleted"}}>
+								Clear completed ({{completed}})
+							</button>
+						{{/if}}
+					</footer>
+				{{/if}}
+			</section>
+			<footer id="info">
+				<p>Double-click to edit a todo</p>
+				<p>
+					Created by
+					<a href="http://github.com/tomdale">Tom Dale</a>,
+					<a href="http://github.com/addyosmani">Addy Osmani</a>
+				</p>
+				<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+			</footer>
+		</script>
+		<script src="bower_components/todomvc-common/base.js"></script>
+		<script src="bower_components/jquery/jquery.js"></script>
+		<script src="bower_components/handlebars/handlebars.js"></script>
+		<script src="bower_components/ember/ember.js"></script>
+		<script src="bower_components/ember-data/ember-data.js"></script>
+		<script src="bower_components/ember-localstorage-adapter/localstorage_adapter.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/router.js"></script>
+		<script src="js/models/todo.js"></script>
+		<script src="js/controllers/todos_controller.js"></script>
+		<script src="js/controllers/todo_controller.js"></script>
+		<script src="js/views/edit_todo_view.js"></script>
+	</body>
 </html>
