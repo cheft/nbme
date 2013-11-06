@@ -1,4 +1,4 @@
-exports.createRoute = function(app) {
+exports.Route = function(app) {
 	app.get('/users/toLogin', function(req, res) {
 		res.render('login');
 	});

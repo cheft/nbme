@@ -1,5 +1,5 @@
-exports.createModel = function() {
-	var model = require('mongoose').Schema({
+exports.Model = function() {
+	var m = require('mongoose').Schema({
 	    username: String,
 	    password: String,
 	    sex: Number,
@@ -22,5 +22,5 @@ exports.createModel = function() {
 	}
 	*/
 
-	return model;
+	return m;
 };

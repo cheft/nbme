@@ -1,5 +1,5 @@
-exports.createManager = function(model) {
-	var manager = {
+exports.Manager = function(model) {
+	var mgr = {
 		create: function(doc, callback) {
 			model.create(doc, function (err) {
 		        if(err) return callback(err);
@@ -43,5 +43,5 @@ exports.createManager = function(model) {
 			});
 		}
 	};
-	return manager;
+	return mgr;
 };

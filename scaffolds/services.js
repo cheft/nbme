@@ -1,21 +1,21 @@
 var fs = require('fs');
 var _ = require('underscore');
 
-exports.createService = function(model) {
-	var manager = require('../scaffolds/managers').createManager(model);
+exports.Service = function(model) {
+	var manager = require('../scaffolds/managers').Manager(model);
 	var baseSvc = new BaseSvc(manager);
 	var service_path = __dirname + '/../services/' + model.modelName + '.js';
 	var f = fs.existsSync(service_path);
 	var service = {};
 	if(f) {
-		service = require(service_path).createService(manager);
+		service = require(service_path).Service(manager);
 	}
 	service = _.extend(baseSvc, service);
 	return service;
 };
 
 var BaseSvc = function(manager) {
-	var service = {
+	var svc = {
 		create: function(doc, callback) {
 			manager.create(doc, callback);
 		},
@@ -32,5 +32,5 @@ var BaseSvc = function(manager) {
 			manager.list(callback);
 		}
 	};
-	return service;
+	return svc;
 };

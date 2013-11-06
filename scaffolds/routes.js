@@ -1,16 +1,16 @@
 var fs = require('fs');
 var _ = require('underscore');
 
-exports.createRoute = function(app, modelName) {
+exports.Route = function(app, modelName) {
 	var path = modelName + 's';
 	var model = require('../scaffolds/models')[modelName];
-	var service = require('../scaffolds/services').createService(model);
+	var service = require('../scaffolds/services').Service(model);
 	var baseRoute = new BaseRoute(model, service);
 	var route_path = __dirname + '/../routes/' + modelName + '.js';
 	var f = fs.existsSync(route_path);
 	var route = {};
 	if(f) {
-		route = require(route_path).createRoute(app, service);
+		route = require(route_path).Route(app, service);
 	}
 	route = _.extend(baseRoute, route);
 	app.get('/' + path, route.list);

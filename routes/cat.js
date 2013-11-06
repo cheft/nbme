@@ -1,6 +1,7 @@
-exports.createRoute = function(app, service) {
+exports.Route = function(app, service) {
 	app.get('/cats/cat', function(req, res) {
-		res.send('cat');
+		console.log(res);
+		res.sendfile('public/index.html');
 		console.log(service);
 	});
 

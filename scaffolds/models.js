@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var config = require('../config');
 var fs = require('fs');
+var _ = require('underscore');
 
 mongoose.connect(config.connectionUrl);
 
@@ -20,8 +21,9 @@ exports.scan = function(app) {
 	var scaffold_route = __dirname + '/../scaffolds/routes';
 	fs.readdirSync(models_path).forEach(function (file) {
 		var modelName = file.replace('.js', '');
-		var model = require(models_path + '/' + file).createModel();
+		var exp = require(models_path + '/' + file);
+		var model = _.isFunction(exp.Model) ? exp.Model() : exp.Model;
 	    exports[modelName] = mongoose.model(modelName, model);
-	    require(scaffold_route).createRoute(app, modelName);
+	    require(scaffold_route).Route(app, modelName);
 	});
 };

@@ -1,6 +1,6 @@
-exports.createRoute = function(app) {
+exports.Route = function(app) {
 	app.get('/', function(req, res){
-		res.render('index', { title: 'Express' , test: 'Hello'});
+		res.sendfile('public/index.html');
 	});
 
 	app.get('/tests/:id', function(req, res){

@@ -6,8 +6,10 @@ var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+//app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
+// app.engine('.html', ejs.__express);
+// app.set('view engine', 'html');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -16,13 +18,17 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req, res) {
+	res.sendfile('public/404.html');
+});
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
 require('./scaffolds/models').scan(app);
-require('./routes').createRoute(app);
+require('./routes').Route(app);
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));

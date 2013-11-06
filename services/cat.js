@@ -1,9 +1,9 @@
-exports.createService = function(manager) {
-	var service = {
+exports.Service = function(manager) {
+	var svc = {
 		get: function(id, callback) {
 			console.log('cat...............');
 			manager.get(id, callback);
 		}
 	};
-	return service;
+	return svc;
 };
