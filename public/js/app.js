@@ -11,3 +11,9 @@ App.Router.map(function() {
         path: '/favs'
     });
 });
+
+App.IndexRoute = Ember.Route.extend({
+  setupController: function(controller) {
+    controller.set('title', 'My App');
+  }
+});

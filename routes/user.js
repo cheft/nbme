@@ -1,10 +1,10 @@
 exports.Route = function(app) {
     app.get('/users/toLogin', function(req, res) {
-        res.render('login');
+        res.sendfile('public/html/user/login.html');
     });
 
     app.get('/users/toReg', function(req, res) {
-        res.render('reg');
+        res.sendfile('public/html/user/reg.html');
     });
 
     app.post('/users/login', function(req, res) {
