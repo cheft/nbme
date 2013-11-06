@@ -11,4 +11,4 @@ nbme = Nodejs Bootstrap MongoDB Emberjs
     git clone https://github.com/chenhaifeng314/nbme.git
     cd nbme
     npm install            
-    npm app.js               
+    node app.js               
