@@ -1,4 +1,6 @@
-nbme = Nodejs Bootstrap MongoDB Emberjs
+nbme
 ====
 
-Nodejs + Express + ejs + Bootstrap + MongoDB + Mongoose + Emberjs
+nbme = Nodejs Bootstrap MongoDB Emberjs
+
+(Nodejs + Express + ejs + Bootstrap + MongoDB + Mongoose + Emberjs)
