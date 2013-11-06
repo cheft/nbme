@@ -1,14 +1,13 @@
 {
-  "name": "nbme",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
-  "dependencies": {
-    "express": "latest",
-    "ejs": "latest",
-    "mongoose": "latest",
-    "underscore": "latest"
-  }
+    "name": "nbme",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "express": "latest",
+        "mongoose": "latest",
+        "underscore": "latest"
+    }
 }

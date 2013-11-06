@@ -1,4 +1,4 @@
 module.exports = {
-    cookieSecret:'nbme',
-    connectionUrl:'mongodb://localhost/nbme'
+    cookieSecret: 'nbme',
+    connectionUrl: 'mongodb://localhost/nbme'
 };

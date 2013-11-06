@@ -18,18 +18,18 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function (req, res) {
-	res.sendfile('public/404.html');
+app.use(function(req, res) {
+    res.sendfile('public/404.html');
 });
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
 require('./scaffolds/models').scan(app);
 require('./routes').Route(app);
 
-http.createServer(app).listen(app.get('port'), function(){
-	console.log('Express server listening on port ' + app.get('port'));
+http.createServer(app).listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + app.get('port'));
 });
