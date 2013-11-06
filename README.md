@@ -1,4 +1,4 @@
-nbme
+nbme = Nodejs Bootstrap MongoDB Emberjs
 ====
 
-Nodejs + Bootstrap + MongoDB + Ember
+Nodejs + Express + ejs + Bootstrap + MongoDB + Mongoose + Emberjs
