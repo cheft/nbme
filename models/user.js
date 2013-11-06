@@ -1,8 +1,5 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
 exports.createModel = function() {
-	var model = new Schema({
+	var model = require('mongoose').Schema({
 	    username: String,
 	    password: String,
 	    sex: Number,

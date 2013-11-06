@@ -17,13 +17,11 @@ db.once('open', function () {
 
 exports.scan = function(app) {
 	var models_path = __dirname + '/../models';
-	var routes_path = __dirname + '/../routes';
+	var scaffold_route = __dirname + '/../scaffolds/routes';
 	fs.readdirSync(models_path).forEach(function (file) {
-		if('index.js' != file) {
-			var modelName = file.replace('.js', '');
-			var model = require(models_path + '/' + file).createModel();
-		    exports[modelName] = mongoose.model(modelName, model);
-		    require(routes_path).createRoute(app, modelName);
-		}
+		var modelName = file.replace('.js', '');
+		var model = require(models_path + '/' + file).createModel();
+	    exports[modelName] = mongoose.model(modelName, model);
+	    require(scaffold_route).createRoute(app, modelName);
 	});
 };

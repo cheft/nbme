@@ -1,5 +1,4 @@
 exports.createRoute = function(app) {
-
 	app.get('/users/toLogin', function(req, res) {
 		res.render('login');
 	});
@@ -17,5 +16,4 @@ exports.createRoute = function(app) {
 	app.post('/users/reg', function(req, res){
 		res.send('reg');
 	});
-
 };

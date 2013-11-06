@@ -21,8 +21,8 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-require(path.join(__dirname, 'models')).scan(app);
-require(path.join(__dirname, 'routes') + '/main').createRoute(app);
+require('./scaffolds/models').scan(app);
+require('./routes').createRoute(app);
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
