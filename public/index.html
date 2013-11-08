@@ -1,77 +1,142 @@
-<!doctype html>
-<html lang="en" data-framework="emberjs">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>ember.js • TodoMVC</title>
-		<link rel="stylesheet" href="lib/todomvc-common/base.css">
-	</head>
-	<body>
-		<script type="text/x-handlebars" data-template-name="todos">
-			<section id="todoapp">
-				<header id="header">
-					<h1>todos</h1>
-					{{input id="new-todo" type="text" value=newTitle action="createTodo" placeholder="What needs to be done?"}}
-				</header>
-				{{#if length}}
-					<section id="main">
-						<ul id="todo-list">
-							{{#each filteredTodos itemController="todo"}}
-								<li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
-									{{#if isEditing}}
-										{{edit-todo class="edit" value=bufferedTitle focus-out="doneEditing" insert-newline="doneEditing" escape-press="cancelEditing"}}
-									{{else}}
-										{{input type="checkbox" class="toggle" checked=isCompleted}}
-										<label {{action "editTodo" on="doubleClick"}}>{{title}}</label>
-										<button {{action "removeTodo"}} class="destroy"></button>
-									{{/if}}
-									</li>
-							{{/each}}
-						</ul>
-						{{input type="checkbox" id="toggle-all" checked=allAreDone}}
-					</section>
-					<footer id="footer">
-						<span id="todo-count">{{{remainingFormatted}}}</span>
-						<ul id="filters">
-							<li>
-								{{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
-							</li>
-							<li>
-								{{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
-							</li>
-							<li>
-								{{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
-							</li>
-						</ul>
-						{{#if hasCompleted}}
-							<button id="clear-completed" {{action "clearCompleted"}}>
-								Clear completed ({{completed}})
-							</button>
-						{{/if}}
-					</footer>
-				{{/if}}
-			</section>
-			<footer id="info">
-				<p>Double-click to edit a todo</p>
-				<p>
-					Created by
-					<a href="http://github.com/tomdale">Tom Dale</a>,
-					<a href="http://github.com/addyosmani">Addy Osmani</a>
-				</p>
-				<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-			</footer>
-		</script>
-		<script src="lib/todomvc-common/base.js"></script>
-		<script src="lib/jquery/jquery.js"></script>
-		<script src="lib/handlebars/handlebars.js"></script>
-		<script src="lib/ember/ember.js"></script>
-		<script src="lib/ember-data/ember-data.js"></script>
-		<script src="lib/ember-localstorage-adapter/localstorage_adapter.js"></script>
-		<script src="js/app.js"></script>
-		<script src="js/router.js"></script>
-		<script src="js/models/todo.js"></script>
-		<script src="js/controllers/todos_controller.js"></script>
-		<script src="js/controllers/todo_controller.js"></script>
-		<script src="js/views/edit_todo_view.js"></script>
-	</body>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember CRUD Demo</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script type="text/x-handlebars" data-template-name="application">
+  <div class="container">
+    <h1>Ember.js - Express REST API</h1>
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+              
+              {{#view App.NavView}}
+                {{#linkTo "index"}}Home{{/linkTo}}
+              {{/view}}
+              
+              {{#view App.NavView}}
+                {{#linkTo "locations"}}Locations{{/linkTo}}
+              {{/view}}
+              
+
+              {{#view App.NavView}}
+                {{#linkTo "about"}}About{{/linkTo}}
+              {{/view}}
+
+            </ul>
+          </div>
+        </div>
+    {{outlet}}
+  </div>
+  </script>  
+
+  <script type="text/x-handlebars" data-template-name="index" >
+    <p>This is the homepage....</p>
+
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="locations/index">
+
+    {{#if locationsPresent}}
+
+      <p>Nr of locations = {{content.length}}</p>
+
+      {{#if itemsSelected}}
+        <p><button {{action 'removeSelectedLocations'}}>Remove {{editCounter}} selected locations</button></p>
+      {{/if}}
+
+      <table class="table table-hover">
+      <tr>
+        <th>Selected</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Accuracy</th>
+        <th></th>
+        <th></th>
+      </tr>
+        {{#each location in controller itemController="locationsEdit"}}
+          <tr {{bindAttr class="selected:warning"}}>
+          <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+          <td>{{location.latitude}}</td>
+          <td>{{location.longitude}}</td>
+          <td>{{location.accuracy}}</td>
+          <td>{{#linkTo "locations.edit" location}}<img src="img/edit-icon.png"/>{{/linkTo}}</td>
+          <td><a href="#" {{action removeItem location}}><img src="img/delete-icon.png" border="0"/></a></td>
+          </tr>
+        {{/each}}
+      </table>
+
+    {{else}}
+      No locations present.
+    {{/if}}
+
+    <p>{{#linkTo "locations.new"}}<img src="img/add-icon.png"/> New location{{/linkTo}}</p>
+
+    
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="_locationForm" >
+      <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="latitude">Latitude</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="latitude"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="latitude">Longitude</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="longitude"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="accuracy">Accuracy</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="accuracy"}}
+        </div>
+      </div>
+    </form>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="locations/edit" >
+    
+    {{#if controller.isNew}}
+      <h1>New location</h1>
+    {{else}}
+      <h1>Edit location</h1>
+    {{/if}}
+
+      {{partial "locationForm"}}
+
+      <p>
+        <button {{action updateItem this}}>
+          {{#if controller.isNew}}
+            Create location
+          {{else}}
+            Update location
+          {{/if}}
+        </button>
+      </p>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="about" >
+      <p>This is the about page.</p>
+  </script>
+
+  <script src="js/jquery-1.9.1.js"></script>
+  <script src="js/handlebars-1.0.0-rc.4.js"></script>
+  <script src="js/ember-1.0.0-rc.7.js"></script>
+  <script src="js/ember-data-0.13.js"></script>
+
+  <script src="js/bootstrap.js"></script>
+  <script src="js/app.js"></script>
+</body>
 </html>

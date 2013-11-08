@@ -23,8 +23,9 @@ exports.Route = function(app, modelName) {
 var BaseRoute = function(model, service) {
     var route = {
         create: function(req, res) {
-            var doc = new model(req.body);
+            var doc = new model(req.body[model.modelName]);
             service.create(doc, function(data) {
+                console.log(data);
                 res.send(data);
             });
         },
@@ -34,18 +35,22 @@ var BaseRoute = function(model, service) {
             });
         },
         update: function(req, res) {
-            service.update(req.params.id, req.body, function(data) {
+            service.update(req.params.id, req.body[model.modelName], function(data) {
                 res.send(data);
             });
         },
         get: function(req, res) {
             service.get(req.params.id, function(err, data) {
-                res.json(data);
+                var d = {};
+                d[model.modelName] = data;
+                res.json(d);
             });
         },
         list: function(req, res) {
             service.list(function(err, data) {
-                res.json(data);
+                var d = {};
+                d[model.modelName + 's'] = data;
+                res.json(d);
             });
         }
     };
