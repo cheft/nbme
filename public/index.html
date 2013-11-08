@@ -47,11 +47,8 @@
 
     {{#if locationsPresent}}
 
-      <p>Nr of locations = {{content.length}}</p>
-
-      {{#if itemsSelected}}
-        <p><button {{action 'removeSelectedLocations'}}>Remove {{editCounter}} selected locations</button></p>
-      {{/if}}
+   
+    <span>{{#linkTo "locations.new"}}<img src="img/add-icon.png"/> New location{{/linkTo}}</span>
 
       <table class="table table-hover">
       <tr>
@@ -78,9 +75,11 @@
       No locations present.
     {{/if}}
 
-    <p>{{#linkTo "locations.new"}}<img src="img/add-icon.png"/> New location{{/linkTo}}</p>
+    <span>Nr of locations = {{content.length}}</span>
 
-    
+    {{#if itemsSelected}}
+      <span style="float:right"><button {{action 'removeSelectedLocations'}}>Remove {{editCounter}} selected locations</button></span>
+    {{/if}}
   </script>
 
   <script type="text/x-handlebars" data-template-name="_locationForm" >

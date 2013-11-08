@@ -96,7 +96,9 @@ App.LocationsNewRoute = Ember.Route.extend({
 App.LocationsEditController = Ember.ObjectController.extend({
     updateItem: function(location) {
         location.transaction.commit();
+
         this.get('target').transitionTo('locations');
+        
     },
     isNew: function() {
         return this.get('content').get('id');
