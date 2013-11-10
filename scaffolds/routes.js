@@ -1,5 +1,6 @@
 var fs = require('fs');
 var _ = require('underscore');
+var config = require('../config');
 
 exports.Route = function(app, modelName) {
     var path = modelName + 's';
@@ -23,9 +24,13 @@ exports.Route = function(app, modelName) {
 var BaseRoute = function(model, service) {
     var route = {
         create: function(req, res) {
-            var doc = new model(req.body[model.modelName]);
+            var doc = {};
+            if(config.jsonRoot) {
+                doc = new model(req.body[model.modelName]);
+            } else{
+                doc = new model(req.body);
+            }
             service.create(doc, function(data) {
-                console.log(data);
                 res.send(data);
             });
         },
@@ -35,21 +40,35 @@ var BaseRoute = function(model, service) {
             });
         },
         update: function(req, res) {
-            service.update(req.params.id, req.body[model.modelName], function(data) {
+            var doc = {};
+            if(config.jsonRoot) {
+                doc = req.body[model.modelName];
+            } else{
+                doc = req.body;
+            }
+            service.update(req.params.id, doc, function(data) {
                 res.send(data);
             });
         },
         get: function(req, res) {
             service.get(req.params.id, function(err, data) {
                 var d = {};
-                d[model.modelName] = data;
+                if(config.jsonRoot) {
+                    d[model.modelName] = data;
+                } else{
+                    d = data;
+                }
                 res.json(d);
             });
         },
         list: function(req, res) {
             service.list(function(err, data) {
                 var d = {};
-                d[model.modelName + 's'] = data;
+                if(config.jsonRoot) {
+                    d[model.modelName + 's'] = data;
+                } else{
+                    d = data;
+                }
                 res.json(d);
             });
         }

@@ -1,4 +1,4 @@
 exports.Model = require('mongoose').Schema({
-	title: String,
-	isCompeted: Boolean
+	name: String,
+	done: Boolean
 });

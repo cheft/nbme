@@ -140,18 +140,17 @@ App.LocationsIndexController = Ember.ArrayController.extend({
     },
     locationsPresent: function() {
         var itemsPresent = this.get('content').content.length > 0;
-        console.log(' +++ Computed locationsPresent prop with value ' + itemsPresent);
         return itemsPresent;
     }.property('content.@each')
     //}.property('content.isLoaded')
 });
-
+/*
 Ember.Handlebars.registerBoundHelper('locsPresent',
     function() {
         return true;
     }
 );
-
+*/
 App.NavView = Ember.View.extend({
     tagName: 'li',
     classNameBindings: ['active'],
