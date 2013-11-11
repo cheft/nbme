@@ -3,7 +3,7 @@ exports.Manager = function(model) {
         create: function(doc, callback) {
             model.create(doc, function(err) {
                 if (err) return callback(err);
-                return callback(doc);
+                return callback(true);
             });
         },
         del: function(query, callback) {
