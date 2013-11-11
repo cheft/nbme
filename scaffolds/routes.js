@@ -31,7 +31,13 @@ var BaseRoute = function(model, service) {
                 doc = new model(req.body);
             }
             service.create(doc, function(data) {
-                res.send(data);
+                var d = {};
+                if(config.jsonRoot) {
+                    d[model.modelName] = data;
+                } else{
+                    d = data;
+                }
+                res.json(d);
             });
         },
         del: function(req, res) {
@@ -45,6 +51,9 @@ var BaseRoute = function(model, service) {
                 doc = req.body[model.modelName];
             } else{
                 doc = req.body;
+            }
+            if(doc._id) {
+                delete doc._id;
             }
             service.update(req.params.id, doc, function(data) {
                 res.send(data);

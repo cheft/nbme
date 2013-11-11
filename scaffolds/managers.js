@@ -1,9 +1,9 @@
 exports.Manager = function(model) {
     var mgr = {
         create: function(doc, callback) {
-            model.create(doc, function(err) {
+            model.create(doc, function(err, doc) {
                 if (err) return callback(err);
-                return callback(true);
+                return callback(doc);
             });
         },
         del: function(query, callback) {

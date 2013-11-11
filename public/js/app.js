@@ -34,14 +34,15 @@ App.Store = DS.Store.extend({
     adapter: 'App.Adapter'
 });
 
-DS.RESTAdapter.reopen({});
+DS.RESTAdapter.reopen({
+    bulkCommit: false
+});
 
 
 App.Location = DS.Model.extend({
-    latitude: DS.attr('string'),
+    accuracy: DS.attr('string'),
     longitude: DS.attr('string'),
-    accuracy: DS.attr('string')
-
+    latitude: DS.attr('string')
 });
 
 App.LocationsIndexRoute = Ember.Route.extend({
