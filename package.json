@@ -8,7 +8,12 @@
     "dependencies": {
         "express": "latest",
         "mongoose": "latest",
-        "underscore": "latest",
-        "htmlKompressor": "latest"
+        "underscore": "latest"
+    },
+    "devDependencies": {
+        "htmlKompressor": "latest",
+        "uglify-js": "latest",
+        "clean-css": "latest",
+        "node-smushit": "latest"
     }
 }
