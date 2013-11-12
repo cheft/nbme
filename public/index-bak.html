@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember CRUD Demo</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script type="text/x-handlebars" data-template-name="application">
+  <div class="container">
+    <h1>Ember.js - Express REST API</h1>
+
+        <div class="navbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+              
+              {{#view App.NavView}}
+                {{#linkTo "index"}}Home{{/linkTo}}
+              {{/view}}
+              
+              {{#view App.NavView}}
+                {{#linkTo "locations"}}Locations{{/linkTo}}
+              {{/view}}
+              
+              {{#view App.NavView}}
+                {{#linkTo "about"}}About{{/linkTo}}
+              {{/view}}
+
+            </ul>
+          </div>
+        </div>
+    {{outlet}}
+  </div>
+  </script>  
+
+  <script type="text/x-handlebars" data-template-name="index" >
+    <p>This is the homepage....</p>
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="locations/index">
+
+    <span>{{#linkTo "locations.new"}}<img src="img/add-icon.png"/> New location{{/linkTo}}</span>
+    {{#if itemsSelected}}
+      <span style="float:right"><button {{action 'removeSelectedLocations'}}>Remove {{editCounter}} selected locations</button></span>
+    {{/if}}
+    {{#if locationsPresent}} 
+
+      <table class="table table-hover">
+      <tr>
+        <th>Selected</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Accuracy</th>
+        <th></th>
+        <th></th>
+      </tr>
+        {{#each location in controller itemController="locationsEdit"}}
+          <tr {{bindAttr class="selected:warning"}}>
+          <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+          <td>{{location.latitude}}</td>
+          <td>{{location.longitude}}</td>
+          <td>{{location.accuracy}}</td>
+          <td>{{#linkTo "locations.edit" location}}<img src="img/edit-icon.png"/>{{/linkTo}}</td>
+          <td><a href="#" {{action removeItem location}}><img src="img/delete-icon.png" border="0"/></a></td>
+          </tr>
+        {{/each}}
+      </table>
+    <span>Nr of locations = {{content.length}}</span>
+
+    {{else}}
+     <div>No locations present.</div>
+    {{/if}}
+
+
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="_locationForm" >
+      <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="latitude">Latitude</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="latitude"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="latitude">Longitude</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="longitude"}}
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="accuracy">Accuracy</label>
+        <div class="controls">
+          {{view Ember.TextField valueBinding="accuracy"}}
+        </div>
+      </div>
+    </form>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="locations/edit" >
+    
+    {{#if controller.isNew}}
+      <h1>New location</h1>
+    {{else}}
+      <h1>Edit location</h1>
+    {{/if}}
+
+      {{partial "locationForm"}}
+
+      <p>
+        <button {{action updateItem this}}>
+          {{#if controller.isNew}}
+            Create location
+          {{else}}
+            Update location
+          {{/if}}
+        </button>
+      </p>
+  </script>
+
+
+  <script src="lib/jquery/jquery-1.9.1.js"></script>
+  <script src="lib/handlebars/handlebars.js"></script>
+  <script src="lib/ember/ember-1.0.0-rc.7.js"></script>
+  <script src="lib/ember-data/ember-data-0.14.js"></script>
+  <script src="lib/bootstrap/js/bootstrap-2.3.1.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/models/location.js"></script>
+  <script src="js/controllers/location.js"></script>
+  <script src="js/routes/location.js"></script>
+  <script src="js/views/nav.js"></script>
+
+</body>
+</html>

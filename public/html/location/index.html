@@ -1,0 +1,38 @@
+<span>{{#linkTo "location.new"}}
+    <img src="img/add-icon.png" />New location{{/linkTo}}</span>
+{{#if itemsSelected}}
+<span style="float:right">
+    <button {{action 'removeSelectedLocations'}}>Remove {{editCounter}} selected locations</button>
+</span>
+{{/if}} {{#if locationsPresent}}
+
+<table class="table table-hover">
+    <tr>
+        <th>Selected</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Accuracy</th>
+        <th></th>
+        <th></th>
+    </tr>
+    {{#each location in controller itemController="locationEdit"}}
+    <tr {{bindAttr class="selected:warning" }}>
+        <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+        <td>{{location.latitude}}</td>
+        <td>{{location.longitude}}</td>
+        <td>{{location.accuracy}}</td>
+        <td>{{#linkTo "location.edit" location}}
+            <img src="img/edit-icon.png" />{{/linkTo}}</td>
+        <td>
+            <a href="#" {{action removeItem location}}>
+                <img src="img/delete-icon.png" border="0" />
+            </a>
+        </td>
+    </tr>
+    {{/each}}
+</table>
+<span>Nr of locations = {{content.length}}</span>
+
+{{else}}
+<div>No locations present.</div>
+{{/if}}

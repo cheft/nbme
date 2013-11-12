@@ -8,6 +8,7 @@
     "dependencies": {
         "express": "latest",
         "mongoose": "latest",
-        "underscore": "latest"
+        "underscore": "latest",
+        "htmlKompressor": "latest"
     }
 }

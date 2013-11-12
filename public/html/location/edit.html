@@ -1,0 +1,10 @@
+{{#if controller.isNew}}
+<h1>New location</h1>
+{{else}}
+<h1>Edit location</h1>
+{{/if}} {{partial "location/location_form"}}
+<p>
+    <button {{action updateItem this}}>
+        {{#if controller.isNew}} Create location {{else}} Update location {{/if}}
+    </button>
+</p>

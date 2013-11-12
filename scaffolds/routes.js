@@ -19,6 +19,9 @@ exports.Route = function(app, modelName) {
     app.post('/' + path, route.create);
     app.put('/' + path + '/:id', route.update);
     app.del('/' + path + '/:id', route.del);
+    
+    var view = require('../scaffolds/views').View;
+    app.get('/html', view.html);
 };
 
 var BaseRoute = function(model, service) {

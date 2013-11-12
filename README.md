@@ -12,3 +12,8 @@ nbme = Nodejs Bootstrap MongoDB Emberjs
     cd nbme
     npm install            
     node app.js               
+
+
+性能测试
+测试进行中...
+见目录tests

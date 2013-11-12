@@ -1,52 +1,46 @@
-define(function(require) {
+App.LocationEditController = Ember.ObjectController.extend({
+    updateItem: function(location) {
+        location.transaction.commit();
+        this.get('target').transitionTo('location');
+    },
+    isNew: function() {
+        return this.get('content').get('id');
+    }
+});
 
-    var App = require('../app').App;
-    var Ember = require('../app').Ember;
+App.LocationIndexController = Ember.ArrayController.extend({
 
-    App.LocationsEditController = Ember.ObjectController.extend({
-        updateItem: function(location) {
-            location.transaction.commit();
-            this.get('target').transitionTo('locations');
-        },
-        isNew: function() {
-            return this.get('content').get('id');
-        }
-    });
+    editCounter: function() {
+        return this.filterProperty('selected', true).get('length');
+    }.property('@each.selected'),
 
-    App.LocationsIndexController = Ember.ArrayController.extend({
+    itemsSelected: function() {
+        return this.get('editCounter') > 0;
+    }.property('editCounter'),
 
-        editCounter: function() {
-            return this.filterProperty('selected', true).get('length');
-        }.property('@each.selected'),
+    removeItem: function(location) {
+        location.on('didDelete', this, function() {
+            console.log('record deleted');
+        });
 
-        itemsSelected: function() {
-            return this.get('editCounter') > 0;
-        }.property('editCounter'),
+        location.deleteRecord();
+        location.transaction.commit();
+    },
 
-        removeItem: function(location) {
-            location.on('didDelete', this, function() {
-                console.log('record deleted');
-            });
-
-            location.deleteRecord();
-            location.transaction.commit();
-        },
-
-        removeSelectedLocations: function() {
-            arr = this.filterProperty('selected', true);
-            if (arr.length === 0) {
-                output = 'nothing selected';
-            } else {
-                output = '';
-                for (i = 0; i < arr.length; i++) {
-                    arr[i].deleteRecord();
-                    arr[i].store.commit();
-                }
+    removeSelectedLocations: function() {
+        arr = this.filterProperty('selected', true);
+        if (arr.length === 0) {
+            output = 'nothing selected';
+        } else {
+            output = '';
+            for (i = 0; i < arr.length; i++) {
+                arr[i].deleteRecord();
+                arr[i].store.commit();
             }
-        },
-        locationsPresent: function() {
-            var itemsPresent = this.get('content').content.length > 0;
-            return itemsPresent;
-        }.property('content.@each')
-    });
+        }
+    },
+    locationsPresent: function() {
+        var itemsPresent = this.get('content').content.length > 0;
+        return itemsPresent;
+    }.property('content.@each')
 });
