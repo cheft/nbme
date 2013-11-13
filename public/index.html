@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Ember CRUD Demo</title>
-  <link rel="stylesheet" href="http://localhost:3000/css" media="screen">
+  <link rel="stylesheet" href="all.css" media="screen">
 </head>
 <body>
   <script type="text/x-handlebars" data-template-name="application">
@@ -12,27 +12,22 @@
         <div class="navbar">
           <div class="navbar-inner">
             <ul class="nav">
-              
               {{#view App.NavView}}
                 {{#linkTo "index"}}Home{{/linkTo}}
               {{/view}}
-              
               {{#view App.NavView}}
                 {{#linkTo "location"}}Location{{/linkTo}}
               {{/view}}
-              
               {{#view App.NavView}}
                 {{#linkTo "about"}}About{{/linkTo}}
               {{/view}}
-
             </ul>
           </div>
         </div>
     {{outlet}}
   </div>
   </script>
-
-  <script src="http://localhost:3000/js"></script>
-
+  <script src="hbs.js"></script>
+  <script src="all.js"></script>
 </body>
 </html>

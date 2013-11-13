@@ -3,31 +3,28 @@ var _ = require('underscore');
 var kompressor = require('htmlKompressor');
 var UglifyJS = require('uglify-js');
 var CleanCSS = require('clean-css');
-var config = require('../config');
+var config = require('../devcfg.js');
 
 exports.Compressor = {
     preHtml: function() {
         var views_path = __dirname + '/../views';
         var htmls = [];
         readHtml(views_path, views_path, htmls);
-        fs.writeFile('D:/html.json', JSON.stringify(htmls), function() {
-            console.log('html compress finished');
+        fs.writeFile(__dirname + '/../public/hbs.js', 'window.hbs = ' + JSON.stringify(htmls), function() {
+            console.log('hbs compress finished');
         });
     },
     html: function(req, res) {
-        fs.readFile('D:/html.json', function(err, data) {
+        fs.readFile('D:/hbs.js', function(err, data) {
             var htmls = JSON.parse(data.toString());
             res.json(htmls);
         });
     },
     preJs: function() {
-        var jses = '/* nbme */';
+        var jses = '';
         jses = readJsList(__dirname + '/../public', config.jsList, jses);
-        jses = readJs(__dirname + '/../public/js/controllers', jses);
-        jses = readJs(__dirname + '/../public/js/models', jses);
-        jses = readJs(__dirname + '/../public/js/routes', jses);
-        jses = readJs(__dirname + '/../public/js/views', jses);
-        fs.writeFile('D:/all.js', jses, function() {
+        jses = readJs(__dirname + '/../public/js', jses);
+        fs.writeFile(__dirname + '/../public/all.js', jses, function() {
             console.log('js compress finished');
         });
     },
@@ -35,10 +32,10 @@ exports.Compressor = {
         res.download('D:/all.js', 'all.js');
     },
     preCss: function() {
-        var csses = '/* nbme */';
+        var csses = '';
         csses = readCssList(__dirname + '/../public', config.cssList, csses);
         csses = readCss(__dirname + '/../public/css', csses);
-        fs.writeFile('D:/all.css', csses, function() {
+        fs.writeFile(__dirname + '/../public/all.css', csses, function() {
             console.log('css compress finished');
         });
     },
@@ -69,7 +66,7 @@ var readHtml = function(basePath, path, htmls) {
 };
 
 var readCss = function(path, csses) {
-    var css = new CleanCSS();
+    var css = new CleanCSS({keepSpecialComments: 0});
     fs.readdirSync(path).forEach(function(file) {
         var suffix = file.substr(file.lastIndexOf('.', file.length));
         var stats = fs.statSync(path + '/' + file);
@@ -80,14 +77,14 @@ var readCss = function(path, csses) {
                 csses = csses + value;
             }
         } else {
-            readCss(path + '/' + file, csses);
+            csses = readCss(path + '/' + file, csses);
         }
     });
     return csses;
 };
 
 var readCssList = function(path, cssList, csses) {
-    var css = new CleanCSS();
+    var css = new CleanCSS({keepSpecialComments: 0});
     _.each(cssList, function(item) {
         var tmp = fs.readFileSync(path + '/' + item);
         var value = css.minify(tmp.toString());
@@ -107,7 +104,7 @@ var readJs = function(path, jses) {
                 jses = jses + value.code;
             }
         } else {
-            readJs(path + '/' + file, jses);
+            jses = readJs(path + '/' + file, jses);
         }
     });
     return jses;

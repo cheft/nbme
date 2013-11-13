@@ -1,6 +1,5 @@
 var fs = require('fs');
 var _ = require('underscore');
-var config = require('../config');
 
 exports.Route = function(app, modelName) {
     var path = modelName + 's';
@@ -24,19 +23,10 @@ exports.Route = function(app, modelName) {
 var BaseRoute = function(model, service) {
     var route = {
         create: function(req, res) {
-            var doc = {};
-            if(config.jsonRoot) {
-                doc = new model(req.body[model.modelName]);
-            } else{
-                doc = new model(req.body);
-            }
+            var doc = new model(req.body[model.modelName]);
             service.create(doc, function(data) {
                 var d = {};
-                if(config.jsonRoot) {
-                    d[model.modelName] = data;
-                } else{
-                    d = data;
-                }
+                d[model.modelName] = data;
                 res.json(d);
             });
         },
@@ -46,12 +36,7 @@ var BaseRoute = function(model, service) {
             });
         },
         update: function(req, res) {
-            var doc = {};
-            if(config.jsonRoot) {
-                doc = req.body[model.modelName];
-            } else{
-                doc = req.body;
-            }
+            var doc = req.body[model.modelName];
             if(doc._id) {
                 delete doc._id;
             }
@@ -62,22 +47,14 @@ var BaseRoute = function(model, service) {
         get: function(req, res) {
             service.get(req.params.id, function(err, data) {
                 var d = {};
-                if(config.jsonRoot) {
-                    d[model.modelName] = data;
-                } else{
-                    d = data;
-                }
+                d[model.modelName] = data;
                 res.json(d);
             });
         },
         list: function(req, res) {
             service.list(function(err, data) {
                 var d = {};
-                if(config.jsonRoot) {
-                    d[model.modelName + 's'] = data;
-                } else{
-                    d = data;
-                }
+                d[model.modelName + 's'] = data;
                 res.json(d);
             });
         }
