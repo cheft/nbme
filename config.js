@@ -7,8 +7,8 @@ module.exports = {
         'lib/jquery/jquery-1.9.1.js',
         'lib/underscore/underscore.js',
         'lib/handlebars/handlebars.js',
-        'lib/ember/ember-1.0.0-rc.7.js',
-        'lib/ember-data/ember-data-0.14.js',
+        'lib/ember/ember.js',
+        'lib/ember-data/ember-data.js',
         'lib/bootstrap/js/bootstrap.js',
         'app.js'
     ],

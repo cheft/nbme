@@ -1,43 +1,21 @@
 App.LocationIndexRoute = Ember.Route.extend({
-    setupController: function(controller) {
-        var locations = App.Location.find();
-        locations.on('didLoad', function() {
-            console.log(' +++ Locations loaded!');
-        });
-        controller.set('content', locations);
-    },
-    renderTemplate: function() {
-        this.render('location.index', {
-            into: 'application'
-        });
+    model: function() {
+        return this.store.find('location');
     }
 });
 
 App.LocationEditRoute = Ember.Route.extend({
     setupController: function(controller, model) {
-        this.controllerFor('location.edit').setProperties({
-            isNew: false,
-            content: model
-        });
-    },
-
-    renderTemplate: function() {
-        this.render('location.edit', {
-            into: 'application'
-        });
+        controller.set('isNew', false).set('content', model);
     }
 });
 
 App.LocationNewRoute = Ember.Route.extend({
     setupController: function() {
-        this.controllerFor('location.edit').setProperties({
-            isNew: true,
-            content: App.Location.createRecord()
-        });
+        this.controllerFor('location.edit').set('isNew', true)
+        .set('content', this.store.createRecord('location'));
     },
     renderTemplate: function() {
-        this.render('location.edit', {
-            into: 'application'
-        });
+        this.render('location.edit', {into: 'application'});
     }
 });

@@ -1,24 +1,18 @@
 App.UserIndexRoute = Ember.Route.extend({
-    setupController: function(controller) {
-        var users = App.User.find();
-        controller.set('content', users);
+    model: function() {
+        return this.store.find('user');
     }
 });
 
 App.UserEditRoute = Ember.Route.extend({
     setupController: function(controller, model) {
-        this.controllerFor('user.edit').setProperties({
-            content: model
-        });
+        controller.set('content', model);
     }
 });
 
 App.UserNewRoute = Ember.Route.extend({
     setupController: function() {
-        this.controllerFor('user.edit').setProperties({
-            isNew: true,
-            content: App.User.createRecord()
-        });
+        this.controllerFor('user.edit').set('content', this.store.createRecord('user'));
     },
     renderTemplate: function() {
         this.render('user.edit', {into: 'application'});

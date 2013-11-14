@@ -10,17 +10,8 @@ var App = Ember.Application.create({
     }
 });
 
-App.Adapter = DS.RESTAdapter.extend({
-    serializer: DS.RESTSerializer.extend({
-        primaryKey: function() {
-            return '_id';
-        }
-    })
-});
-
-App.Store = DS.Store.extend({
-    revision: 12,
-    adapter: 'App.Adapter'
+App.ApplicationSerializer = DS.RESTSerializer.extend({
+    primaryKey: '_id'
 });
 
 App.Router.map(function() {
