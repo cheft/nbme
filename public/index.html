@@ -2,28 +2,26 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Ember CRUD Demo</title>
-  <link rel="stylesheet" href="css" media="screen">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBME CRUD Demo</title>
+<link rel="stylesheet" href="css" media="screen">
 </head>
 <body>
   <script type="text/x-handlebars" data-template-name="application">
   <div class="container">
-    <h1>Ember.js - Express REST API</h1>
-        <div class="navbar">
-          <div class="navbar-inner">
-            <ul class="nav">
-              {{#view App.NavView}}
-                {{#linkTo "index"}}Home{{/linkTo}}
-              {{/view}}
-              {{#view App.NavView}}
-                {{#linkTo "location"}}Location{{/linkTo}}
-              {{/view}}
-              {{#view App.NavView}}
-                {{#linkTo "about"}}About{{/linkTo}}
-              {{/view}}
-            </ul>
-          </div>
-        </div>
+    <div class="nav-div">
+      <ul class="nav nav-tabs nav-justified">
+        {{#view App.NavView}}
+          {{#linkTo "index"}}Home{{/linkTo}}
+        {{/view}}
+        {{#view App.NavView}}
+          {{#linkTo "location"}}Location{{/linkTo}}
+        {{/view}}
+        {{#view App.NavView}}
+          {{#linkTo "about"}}About{{/linkTo}}
+        {{/view}}
+      </ul>
+    </div>
     {{outlet}}
   </div>
   </script>

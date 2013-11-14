@@ -4,7 +4,7 @@
 <h1>Edit location</h1>
 {{/if}} {{partial "location/location_form"}}
 <p>
-    <button {{action updateItem this}}>
-        {{#if controller.isNew}} Create location {{else}} Update location {{/if}}
+    <button {{action updateItem this}} class="btn btn-primary">
+        {{#if controller.isNew}} Create {{else}} Update {{/if}}
     </button>
 </p>

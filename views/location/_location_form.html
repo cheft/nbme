@@ -1,20 +1,20 @@
-<form class="form-horizontal">
-    <div class="control-group">
-        <label class="control-label" for="latitude">Latitude</label>
+<form role="form">
+    <div class="form-group">
+        <label for="latitude">Latitude</label>
         <div class="controls">
-            {{view Ember.TextField valueBinding="latitude"}}
+            {{view Ember.TextField valueBinding="latitude" class="form-control" }}
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="latitude">Longitude</label>
+    <div class="form-group">
+        <label for="latitude">Longitude</label>
         <div class="controls">
-            {{view Ember.TextField valueBinding="longitude"}}
+            {{view Ember.TextField valueBinding="longitude" class="form-control"}}
         </div>
     </div>
-    <div class="control-group">
-        <label class="control-label" for="accuracy">Accuracy</label>
+    <div class="form-group">
+        <label for="accuracy">Accuracy</label>
         <div class="controls">
-            {{view Ember.TextField valueBinding="accuracy"}}
+            {{view Ember.TextField valueBinding="accuracy" class="form-control"}}
         </div>
     </div>
 </form>

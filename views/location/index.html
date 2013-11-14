@@ -1,18 +1,20 @@
 <span>{{#linkTo "location.new"}}
-    <img src="img/add-icon.png" />New location{{/linkTo}}</span>
+    <button type="button" class="btn btn-primary">
+      <span class="glyphicon glyphicon-plus"></span> New
+    </button>
+{{/linkTo}}</span>
 {{#if itemsSelected}}
 <span style="float:right">
-    <button {{action 'removeSelectedLocations'}}>Remove {{editCounter}} selected locations</button>
+    <button {{action 'removeSelectedLocations'}} class="btn btn-danger">Remove {{editCounter}} selected locations</button>
 </span>
 {{/if}} {{#if locationsPresent}}
-
+<br /><br />
 <table class="table table-hover">
     <tr>
         <th>Selected</th>
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Accuracy</th>
-        <th></th>
         <th></th>
     </tr>
     {{#each location in controller itemController="locationEdit"}}
@@ -22,17 +24,14 @@
         <td>{{location.longitude}}</td>
         <td>{{location.accuracy}}</td>
         <td>{{#linkTo "location.edit" location}}
-            <img src="img/edit-icon.png" />{{/linkTo}}</td>
-        <td>
-            <a href="#" {{action removeItem location}}>
-                <img src="img/delete-icon.png" border="0" />
-            </a>
+            <span class="glyphicon glyphicon-edit"></span>
+            {{/linkTo}} 
+            <a href="void(0);" class="glyphicon glyphicon-trash" {{action removeItem location}}></a>
         </td>
     </tr>
     {{/each}}
 </table>
-<span>Nr of locations = {{content.length}}</span>
-
+<span class="label label-info">Number of locations = {{content.length}}</span>
 {{else}}
-<div>No locations present.</div>
+<span class="label label-info">No locations present.</span>
 {{/if}}
