@@ -3,61 +3,56 @@ var _ = require('underscore');
 var kompressor = require('htmlKompressor');
 var UglifyJS = require('uglify-js');
 var CleanCSS = require('clean-css');
-var config = require('../devcfg.js');
+var smushit = require('node-smushit');
+var config = require('../config');
 
 exports.Compressor = {
-    preHtml: function() {
+    html: function(req, res) {
         var views_path = __dirname + '/../views';
         var htmls = [];
         readHtml(views_path, views_path, htmls);
-        fs.writeFile(__dirname + '/../public/hbs.js', 'window.hbs = ' + JSON.stringify(htmls), function() {
-            console.log('hbs compress finished');
-        });
+        res.attachment('hbs.js');
+        res.send('window.hbs = ' + JSON.stringify(htmls));
     },
-    html: function(req, res) {
-        fs.readFile('D:/hbs.js', function(err, data) {
-            var htmls = JSON.parse(data.toString());
-            res.json(htmls);
-        });
-    },
-    preJs: function() {
+    js: function(req, res) {
         var jses = '';
         jses = readJsList(__dirname + '/../public', config.jsList, jses);
         jses = readJs(__dirname + '/../public/js', jses);
-        fs.writeFile(__dirname + '/../public/all.js', jses, function() {
-            console.log('js compress finished');
-        });
+        res.attachment('all.js');
+        res.send(jses);
     },
-    js: function(req, res) {
-        res.download('D:/all.js', 'all.js');
-    },
-    preCss: function() {
+    css: function(req, res) {
         var csses = '';
         csses = readCssList(__dirname + '/../public', config.cssList, csses);
         csses = readCss(__dirname + '/../public/css', csses);
-        fs.writeFile(__dirname + '/../public/all.css', csses, function() {
-            console.log('css compress finished');
+        res.attachment('all.css');
+        res.send(csses);
+    },
+    img: function(req, res) {
+       smushit.smushit(__dirname + '/../public/img', {
+            onComplete: function(reports) {
+                res.send(reports);
+            },
+            recursive: true
         });
-    },
-    css: function(req, res) {
-        res.download('D:/all.css', 'all.css');
-    },
-    preImg: function() {
-        console.log('img compress finished');
     }
 };
 
 var readHtml = function(basePath, path, htmls) {
     fs.readdirSync(path).forEach(function(file) {
-        var suffix = file.substr(file.lastIndexOf('.', file.length));
         var stats = fs.statSync(path + '/' + file);
         if (stats.isFile()) {
+            var suffix = file.substr(file.lastIndexOf('.', file.length));
             if ('.html' === suffix) {
-                var tmp = fs.readFileSync(path + '/' + file);
-                var value = kompressor(tmp.toString(), true);
                 var name = (path + '/' + file).toString()
                     .replace(basePath + '/', '').replace('.html', '');
-                htmls.push({name: name,value: value});
+                var tmp = fs.readFileSync(path + '/' + file);
+                if(config.dev) {
+                    htmls.push({name: name,value: tmp.toString()});
+                }else {
+                    var value = kompressor(tmp.toString(), true);
+                    htmls.push({name: name,value: value});
+                }
             }
         } else {
             readHtml(basePath, path + '/' + file, htmls);
@@ -68,13 +63,17 @@ var readHtml = function(basePath, path, htmls) {
 var readCss = function(path, csses) {
     var css = new CleanCSS({keepSpecialComments: 0});
     fs.readdirSync(path).forEach(function(file) {
-        var suffix = file.substr(file.lastIndexOf('.', file.length));
         var stats = fs.statSync(path + '/' + file);
         if (stats.isFile()) {
+            var suffix = file.substr(file.lastIndexOf('.', file.length));
             if ('.css' === suffix) {
                 var tmp = fs.readFileSync(path + '/' + file);
-                var value = css.minify(tmp.toString());
-                csses = csses + value;
+                if(config.dev) {
+                    csses = csses + tmp.toString();
+                }else {
+                    var value = css.minify(tmp.toString());
+                    csses = csses + value;
+                }
             }
         } else {
             csses = readCss(path + '/' + file, csses);
@@ -87,21 +86,29 @@ var readCssList = function(path, cssList, csses) {
     var css = new CleanCSS({keepSpecialComments: 0});
     _.each(cssList, function(item) {
         var tmp = fs.readFileSync(path + '/' + item);
-        var value = css.minify(tmp.toString());
-        csses = csses + value;
+        if(config.dev) {
+            csses = csses + tmp.toString();
+        }else {
+            var value = css.minify(tmp.toString());
+            csses = csses + value;
+        }
     });
     return csses;
 };
 
 var readJs = function(path, jses) {
     fs.readdirSync(path).forEach(function(file) {
-        var suffix = file.substr(file.lastIndexOf('.', file.length));
         var stats = fs.statSync(path + '/' + file);
         if (stats.isFile()) {
+            var suffix = file.substr(file.lastIndexOf('.', file.length));
             if ('.js' === suffix) {
                 var tmp = fs.readFileSync(path + '/' + file);
-                var value = UglifyJS.minify(tmp.toString(), {fromString: true});
-                jses = jses + value.code;
+                if(config.dev) {
+                    jses = jses + tmp.toString();
+                }else {
+                    var value = UglifyJS.minify(tmp.toString(), {fromString: true});
+                    jses = jses + value.code;
+                }
             }
         } else {
             jses = readJs(path + '/' + file, jses);
@@ -113,8 +120,12 @@ var readJs = function(path, jses) {
 var readJsList = function(path, jsList, jses) {
     _.each(jsList, function(item) {
         var tmp = fs.readFileSync(path + '/' + item);
-        var value = UglifyJS.minify(tmp.toString(), {fromString: true});
-        jses = jses + value.code;
+        if(config.dev) {
+            jses = jses + tmp.toString();
+        }else {
+            var value = UglifyJS.minify(tmp.toString(), {fromString: true});
+            jses = jses + value.code;
+        }
     });
     return jses;
 };

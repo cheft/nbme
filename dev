@@ -1,1 +1,1 @@
-supervisor --ignore public/hbs.js,public/all.js,public/all.css app.js
+supervisor app.js
