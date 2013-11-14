@@ -1,11 +1,3 @@
-App.AboutRoute = Ember.Route.extend({
-    renderTemplate: function() {
-        this.render('about', {
-            into: 'application'
-        });
-    }
-});
-
 App.LocationIndexRoute = Ember.Route.extend({
     setupController: function(controller) {
         var locations = App.Location.find();

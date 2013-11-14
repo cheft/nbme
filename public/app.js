@@ -24,18 +24,14 @@ App.Store = DS.Store.extend({
 });
 
 App.Router.map(function() {
-    this.route('index', {
-        path: '/'
-    });
-    this.route('about', {
-        path: '/about'
-    });
+    this.route('index', {path: '/'});
+    this.route('about', {path: '/about'});
     this.resource('location', function() {
-        this.route('new', {
-            path: '/new'
-        });
-        this.route('edit', {
-            path: '/:location_id'
-        });
+        this.route('new', {path: '/new'});
+        this.route('edit', {path: '/:location_id'});
+    });
+    this.resource('user', function() {
+        this.route('new', {path: '/new'});
+        this.route('edit', {path: '/:user_id'});
     });
 });

@@ -6,7 +6,7 @@ var CleanCSS = require('clean-css');
 var smushit = require('node-smushit');
 var config = require('../config');
 
-exports.Compressor = {
+module.exports = {
     html: function(req, res) {
         var views_path = __dirname + '/../views';
         var htmls = [];

@@ -1,8 +1,8 @@
 exports.Model = function() {
     var m = require('mongoose').Schema({
         username: String,
-        hashpwd:String,
-        sex: Number,
+        hashpwd: String,
+        sex: String,
         email: String,
         phone: String,
         address: {
@@ -11,6 +11,7 @@ exports.Model = function() {
         }
     });
 
+    /*
     m.virtual('password').set(function(password) {
         this.hashpwd = encryptPassword(password);
     });
@@ -22,6 +23,6 @@ exports.Model = function() {
     function encryptPassword(password) {
         return require('crypto').createHash('md5').update(password).digest('base64');
     }
-
+    */
     return m;
 };

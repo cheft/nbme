@@ -15,4 +15,3 @@ App.NavView = Ember.View.extend({
         return this.get('childViews.firstObject.active');
     }.property()
 });
-

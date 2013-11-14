@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="nav-div">
+    <ul class="nav nav-tabs nav-justified">
+      {{#view App.NavView}}
+        {{#linkTo "index"}}Home{{/linkTo}}
+      {{/view}}
+      {{#view App.NavView}}
+        {{#linkTo "location"}}Location{{/linkTo}}
+      {{/view}}
+      {{#view App.NavView}}
+        {{#linkTo "user"}}User{{/linkTo}}
+      {{/view}}
+      {{#view App.NavView}}
+        {{#linkTo "about"}}About{{/linkTo}}
+      {{/view}}
+    </ul>
+  </div>
+  {{outlet}}
+</div>

@@ -2,7 +2,7 @@
 <h1>New location</h1>
 {{else}}
 <h1>Edit location</h1>
-{{/if}} {{partial "location/location_form"}}
+{{/if}} {{partial "location/form"}}
 <p>
     <button {{action updateItem this}} class="btn btn-primary">
         {{#if controller.isNew}} Create {{else}} Update {{/if}}

@@ -7,30 +7,32 @@
 <span style="float:right">
     <button {{action 'removeSelectedLocations'}} class="btn btn-danger">Remove {{editCounter}} selected locations</button>
 </span>
-{{/if}} {{#if locationsPresent}}
-<br /><br />
-<table class="table table-hover">
-    <tr>
-        <th>Selected</th>
-        <th>Latitude</th>
-        <th>Longitude</th>
-        <th>Accuracy</th>
-        <th></th>
-    </tr>
-    {{#each location in controller itemController="locationEdit"}}
-    <tr {{bindAttr class="selected:warning" }}>
-        <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
-        <td>{{location.latitude}}</td>
-        <td>{{location.longitude}}</td>
-        <td>{{location.accuracy}}</td>
-        <td>{{#linkTo "location.edit" location}}
-            <span class="glyphicon glyphicon-edit"></span>
-            {{/linkTo}} 
-            <a href="void(0);" class="glyphicon glyphicon-trash" {{action removeItem location}}></a>
-        </td>
-    </tr>
-    {{/each}}
-</table>
+{{/if}}
+{{#if locationsPresent}}
+<div>
+    <table class="table table-hover">
+        <tr>
+            <th>Selected</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Accuracy</th>
+            <th></th>
+        </tr>
+        {{#each location in controller itemController="locationEdit"}}
+        <tr {{bindAttr class="selected:warning" }}>
+            <td>{{view Ember.Checkbox checkedBinding="selected"}}</td>
+            <td>{{location.latitude}}</td>
+            <td>{{location.longitude}}</td>
+            <td>{{location.accuracy}}</td>
+            <td>{{#linkTo "location.edit" location}}
+                <span class="glyphicon glyphicon-edit"></span>
+                {{/linkTo}} 
+                <a href="void(0);" class="glyphicon glyphicon-trash" {{action removeItem location}}></a>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
 <span class="label label-info">Number of locations = {{content.length}}</span>
 {{else}}
 <span class="label label-info">No locations present.</span>
