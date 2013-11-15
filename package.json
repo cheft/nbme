@@ -8,6 +8,8 @@
     "dependencies": {
         "express": "latest",
         "mongoose": "latest",
+        "ember-mongoose": "latest",
+        "ember-application-node": "latest",
         "underscore": "latest"
     },
     "devDependencies": {

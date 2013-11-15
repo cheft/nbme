@@ -4,13 +4,11 @@ exports.Model = function() {
         hashpwd: String,
         sex: String,
         email: String,
-        phone: String
-        /*
+        phone: String,
         address: {
             city: String,
             street: String
         }
-        */
     });
 
     /*

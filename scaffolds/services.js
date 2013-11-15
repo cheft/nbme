@@ -36,6 +36,12 @@ var BaseSvc = function(manager) {
         },
         list: function(callback) {
             manager.list(callback);
+        },
+        query: function(doc, callback) {
+            manager.query(doc, null, null, callback);
+        },
+        count: function(doc, callback) {
+            manager.count(callback);
         }
     };
     return svc;

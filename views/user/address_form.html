@@ -1,0 +1,16 @@
+<table>
+    {{#each a in address}}
+    <div class="form-group">
+        <label for="city">address.city</label>
+        <div class="controls">
+            {{view Ember.TextField valueBinding="city" class="form-control"}}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="street">address.street</label>
+        <div class="controls">
+            {{view Ember.TextField valueBinding="street" class="form-control"}}
+        </div>
+    </div>
+    {{/each}}
+</table>

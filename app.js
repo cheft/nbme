@@ -13,10 +13,6 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res) {
-    res.sendfile('public/404.html');
-});
-
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
