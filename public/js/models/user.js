@@ -4,10 +4,10 @@ App.User = DS.Model.extend({
     sex: DS.attr('string'),
     email: DS.attr('string'),
     phone: DS.attr('string'),
-    address: DS.hasMany('person')
+    address: DS.hasMany('address')
 });
 
-App.Person = DS.Model.extend({
+App.Address = DS.Model.extend({
 	city: DS.attr('string'),
     street: DS.attr('string'),
     user: DS.belongsTo('user')

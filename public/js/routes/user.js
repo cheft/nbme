@@ -14,8 +14,7 @@ App.UserNewRoute = Ember.Route.extend({
     setupController: function() {
         //console.log(Ember.String.pluralize('person'));
         var user = this.store.createRecord('user', {username: 'test'});
-        var person = this.store.createRecord('person', {city: '111', street: '2222', user: user});
-        person.save();
+        var address = this.store.createRecord('address', {city: '111', street: '2222', user: user});
         user.get('address').addObject(address);
         console.log(JSON.stringify(user.toJSON()));
         this.controllerFor('user.edit').set('content', user);

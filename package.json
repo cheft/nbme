@@ -9,8 +9,8 @@
         "express": "latest",
         "mongoose": "latest",
         "ember-mongoose": "latest",
-        "ember-application-node": "latest",
-        "underscore": "latest"
+        "underscore": "latest",
+        "pluralize": "latest"
     },
     "devDependencies": {
         "htmlKompressor": "latest",
