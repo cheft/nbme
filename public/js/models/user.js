@@ -5,19 +5,23 @@ App.User = DS.Model.extend({
     email: DS.attr('string'),
     phone: DS.attr('string'),
     addresses: DS.hasMany('address'),
-    addAddress: function(address) {
+    addAddress: function(address, callback) {
         var self = this;
         addr = this.get('store').createRecord('address', address);
         addr.save().then(function() {
             self.get('addresses').pushObject(addr);
-            self.save();
+            self.save().then(callback);
         });
+    },
+    getAddresses: function(callback) {
+        $.get('/addresses/users/' + this.get('id'), callback);
     }
 });
 
 App.Address = DS.Model.extend({
     city: DS.attr('string'),
-    street: DS.attr('string')
+    street: DS.attr('string'),
+    user: DS.belongsTo('user')
 });
 
 App.UserAdapter = DS.RESTAdapter.extend({
