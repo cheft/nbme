@@ -12,10 +12,10 @@ App.UserEditRoute = Ember.Route.extend({
 
 App.UserNewRoute = Ember.Route.extend({
     setupController: function() {
-        //console.log(Ember.String.pluralize('person'));
         var user = this.store.createRecord('user', {username: 'test'});
-        var address = this.store.createRecord('address', {city: '111', street: '2222', user: user});
-        user.get('address').addObject(address);
+        var address = {city: '111', street: '2222'};
+        user.addAddress(address);
+
         console.log(JSON.stringify(user.toJSON()));
         this.controllerFor('user.edit').set('content', user);
     },

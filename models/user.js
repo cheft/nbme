@@ -5,10 +5,10 @@ exports.Model = function() {
         sex: String,
         email: String,
         phone: String,
-        address: {
+        addresses: [{
             city: String,
             street: String
-        }
+        }]
     });
 
     /*
