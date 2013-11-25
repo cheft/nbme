@@ -4,18 +4,8 @@ App.User = DS.Model.extend({
     sex: DS.attr('string'),
     email: DS.attr('string'),
     phone: DS.attr('string'),
-    addresses: DS.hasMany('address'),
-    addAddress: function(address, callback) {
-        var self = this;
-        addr = this.get('store').createRecord('address', address);
-        addr.save().then(function() {
-            self.get('addresses').pushObject(addr);
-            self.save().then(callback);
-        });
-    },
-    getAddresses: function(callback) {
-        $.get('/addresses/users/' + this.get('id'), callback);
-    }
+    profile: DS.belongsTo('profile'),
+    addresses: DS.hasMany('address', { async: true })
 });
 
 App.Address = DS.Model.extend({
@@ -24,11 +14,8 @@ App.Address = DS.Model.extend({
     user: DS.belongsTo('user')
 });
 
-App.UserAdapter = DS.RESTAdapter.extend({
-    findAllaa: function() {
-        $.get('/users', function(data) {
-            console.log(data);
-            return data.users;
-        });
-    }
+App.Profile = DS.Model.extend({
+    about: DS.attr('string'),
+    card: DS.attr('string'),
+    user: DS.belongsTo('user')
 });

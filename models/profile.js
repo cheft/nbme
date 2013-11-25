@@ -3,6 +3,6 @@ var Schema = require('mongoose').Schema,
     
 exports.Model = require('mongoose').Schema({
 	user: ObjectId,
-    city: String,
-    street: String
+    about: String,
+    card: String
 });

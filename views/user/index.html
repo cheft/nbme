@@ -12,7 +12,8 @@
             <th>性别</th>
             <th>邮箱</th>
             <th>手机</th>
-            <th></th>
+            <th>card - about</th>
+            <th>addresses</th>
             <th></th>
         </tr>
         {{#each user in controller}}
@@ -23,6 +24,7 @@
             <td>{{user.sex}}</td>
             <td>{{user.email}}</td>
             <td>{{user.phone}}</td>
+            <td>{{user.profile.card}} - {{user.profile.about}}</td>
             <td>{{render 'user/address' user}}</td>
             <td>{{#linkTo "user.edit" user}}
                 <span class="glyphicon glyphicon-edit"></span>

@@ -1,5 +1,11 @@
 <form>
     <div class="form-group">
+        <label for="profile">profile</label>
+        <div class="controls">
+            {{view Ember.TextField valueBinding="profile.card" class="form-control" }}
+        </div>
+    </div>
+    <div class="form-group">
         <label for="username">username</label>
         <div class="controls">
             {{view Ember.TextField valueBinding="username" class="form-control" }}
@@ -28,6 +34,11 @@
         <div class="controls">
             {{view Ember.TextField valueBinding="phone" class="form-control"}}
         </div>
+    </div>
+    <div>
+         <button {{action addEmptyAddress this}} class="btn btn-primary">
+            AddAddress
+        </button>
     </div>
     <div>
         {{render 'user/address_form' this}}

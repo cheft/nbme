@@ -14,6 +14,11 @@ App.ApplicationSerializer = DS.RESTSerializer.extend({
     primaryKey: '_id'
 });
 
+App.store = DS.Store.create({
+    revision: 11,
+    adapter: DS.RESTAdapter.create({ bulkCommit: false })
+});
+
 App.Router.map(function() {
     this.route('index', {path: '/'});
     this.route('about', {path: '/about'});
