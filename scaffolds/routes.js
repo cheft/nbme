@@ -34,7 +34,7 @@ var BaseRoute = function(model, service) {
         },
         del: function(req, res) {
             service.del(req.params.id, function(data) {
-                res.send(data);
+                res.json(data);
             });
         },
         update: function(req, res) {
@@ -43,18 +43,24 @@ var BaseRoute = function(model, service) {
                 delete doc._id;
             }
             service.update(req.params.id, doc, function(data) {
-                res.send(data);
+                var d = {};
+                d[model.modelName] = data;
+                res.json(d);
             });
         },
         get: function(req, res) {
-            service.get(req.params.id, function(err, data) {
+            service.get(req.params.id, function(data) {
                 var d = {};
                 d[model.modelName] = data;
                 res.json(d);
             });
         },
         list: function(req, res) {
-            service.list(function(err, data) {
+            var doc = {};
+            if(req.query.ids && req.query.ids.length > 0) {
+                doc._id = {$in: req.query.ids};
+            }
+            service.list(doc, function(data) {
                 var d = {};
                 d[pluralize(model.modelName)] = data;
                 res.json(d);

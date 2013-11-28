@@ -4,18 +4,19 @@ App.User = DS.Model.extend({
     sex: DS.attr('string'),
     email: DS.attr('string'),
     phone: DS.attr('string'),
-    profile: DS.belongsTo('profile'),
-    addresses: DS.hasMany('address', { async: true })
+    about: DS.belongsTo('about'),
+    addresses: DS.hasMany('address')
 });
 
 App.Address = DS.Model.extend({
     city: DS.attr('string'),
-    street: DS.attr('string'),
-    user: DS.belongsTo('user')
+    street: DS.attr('string')
 });
 
-App.Profile = DS.Model.extend({
-    about: DS.attr('string'),
-    card: DS.attr('string'),
-    user: DS.belongsTo('user')
+App.About = DS.Model.extend({
+    desc: DS.attr('string'),
+    card: DS.attr('string')
 });
+
+App.UserSerializer = App.EmbeddedSerializer;
+App.UserAdapter = App.EmbeddedAdapter;

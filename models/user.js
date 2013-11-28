@@ -1,15 +1,22 @@
-var Schema = require('mongoose').Schema,
-    ObjectId = Schema.Types.ObjectId;
-    
+var util = require('../utils/model');
+
 exports.Model = function() {
-    var m = new Schema({
+    var m = new util.Schema({
         username: String,
         hashpwd: String,
         sex: String,
         email: String,
         phone: String,
-        profile: ObjectId,
-        addresses: Array
+        about: {
+            _id: util.id,
+            card: String,
+            desc: String
+        },
+        addresses: [{
+            _id: util.id,
+            city: String,
+            street: String
+        }]
     });
 
     /*

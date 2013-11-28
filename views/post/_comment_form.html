@@ -1,0 +1,11 @@
+<form>
+    <div class="form-group">
+        <label for="body">comment</label>
+        <div class="controls">
+            {{view Ember.TextField valueBinding="newComment" class="form-control" }}
+        </div>
+    </div>
+    <button {{action comment this}} class="btn btn-primary">
+       Comment
+    </button>
+</form>

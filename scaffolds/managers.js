@@ -7,41 +7,41 @@ exports.Manager = function(model) {
             });
         },
         del: function(query, callback) {
-            model.remove(query, function(err) {
+            model.remove(query, function(err, doc) {
                 if (err) return callback(err);
-                return callback(true);
+                return callback(doc);
             });
         },
         update: function(conditions, update, options, callback) {
-            model.update(conditions, update, options, function(err) {
+            model.findOneAndUpdate(conditions, update, options, function(err, doc) {
                 if (err) return callback(err);
-                return callback(true);
+                return callback(doc);
             });
         },
         get: function(id, callback) {
             model.findOne({
                 _id: id
-            }, function(err, model) {
-                if (err) return callback(err, null);
-                return callback(null, model);
+            }, function(err, doc) {
+                if (err) return callback(err);
+                return callback(doc);
             });
         },
         count: function(query, callback) {
-            model.count(query, function(err, model) {
-                if (error) return callback(error, null);
-                return callback(null, model);
+            model.count(query, function(err, doc) {
+                if (error) return callback(error);
+                return callback(doc);
             });
         },
         query: function(query, fileds, opt, callback) {
-            model.find(query, fileds, opt, function(err, model) {
-                if (err) return callback(err, null);
-                return callback(null, model);
+            model.find(query, fileds, opt, function(err, doc) {
+                if (err) return callback(err);
+                return callback(doc);
             });
         },
-        list: function(callback) {
-            model.find({}, function(err, model) {
-                if (err) return callback(err, null);
-                return callback(null, model);
+        list: function(doc, callback) {
+            model.find(doc, function(err, doc) {
+                if (err) return callback(err);
+                return callback(doc);
             });
         }
     };

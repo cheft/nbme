@@ -1,5 +1,5 @@
 exports.Model = require('mongoose').Schema({
+    post: String,
     body: String,
-    date: Date
+    date: {type: Date, default: Date.now}
 });
-  

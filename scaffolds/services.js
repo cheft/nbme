@@ -34,8 +34,8 @@ var BaseSvc = function(manager) {
         get: function(id, callback) {
             manager.get(id, callback);
         },
-        list: function(callback) {
-            manager.list(callback);
+        list: function(doc, callback) {
+            manager.list(doc, callback);
         },
         query: function(doc, callback) {
             manager.query(doc, null, null, callback);

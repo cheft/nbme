@@ -1,10 +1,17 @@
 <form>
     <div class="form-group">
-        <label for="profile">profile</label>
+        <label for="about">about.card</label>
         <div class="controls">
-            {{view Ember.TextField valueBinding="profile.card" class="form-control" }}
+            {{view Ember.TextField valueBinding="about.card" class="form-control" }}
         </div>
     </div>
+    <div class="form-group">
+        <label for="desc">about.desc</label>
+        <div class="controls">
+            {{view Ember.TextField valueBinding="about.desc" class="form-control" }}
+        </div>
+    </div>
+    <hr />
     <div class="form-group">
         <label for="username">username</label>
         <div class="controls">

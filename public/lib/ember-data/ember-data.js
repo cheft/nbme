@@ -134,7 +134,6 @@ DS.JSONSerializer = Ember.Object.extend({
         this.serializeHasMany(record, json, relationship);
       }
     }, this);
-
     return json;
   },
 
@@ -7071,7 +7070,6 @@ DS.RESTAdapter = DS.Adapter.extend({
     var serializer = store.serializerFor(type.typeKey);
 
     serializer.serializeIntoHash(data, type, record, { includeId: true });
-
     return this.ajax(this.buildURL(type.typeKey), "POST", { data: data });
   },
 
