@@ -18,5 +18,5 @@ App.About = DS.Model.extend({
     card: DS.attr('string')
 });
 
-App.UserSerializer = App.EmbeddedSerializer;
-App.UserAdapter = App.EmbeddedAdapter;
+App.UserSerializer = Ember.FullSerializer;
+App.UserAdapter = Ember.FullAdapter;

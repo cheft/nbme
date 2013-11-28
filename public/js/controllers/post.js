@@ -21,8 +21,8 @@ App.PostViewController = Ember.ObjectController.extend({
         removeComment: function(post, comment) {
             post.get('comments').removeObject(comment);
             post.save().then(function() {
-                //comment.deleteRecord();
-                //comment.save();
+                comment.deleteRecord();
+                comment.save();
             });
         },
         comment: function(post) {
@@ -32,8 +32,7 @@ App.PostViewController = Ember.ObjectController.extend({
             post.set('newComment', '');
             comment.save().then(function(c) {
                 post.get('comments').pushObject(c);
-                //console.log(post.get('comments').mapProperty('id'));
-                //post.save();
+                post.save();
             });
         }
     }

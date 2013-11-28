@@ -9,6 +9,7 @@ module.exports = {
         'lib/handlebars/handlebars.js',
         'lib/ember/ember.js',
         'lib/ember-data/ember-data.js',
+        'lib/ember-mongo-adapter/mongo-adapter.js',
         'lib/bootstrap/js/bootstrap.js',
         'app.js'
     ],
