@@ -3,7 +3,7 @@ module.exports = {
     connectionUrl: 'mongodb://localhost/nbme',
 
     dev: true,
-    jsList: [
+    js: [
         'lib/jquery/jquery-1.9.1.js',
         'lib/underscore/underscore.js',
         'lib/handlebars/handlebars.js',
@@ -13,7 +13,7 @@ module.exports = {
         'lib/bootstrap/js/bootstrap.js',
         'app.js'
     ],
-    cssList: [
+    css: [
         'lib/bootstrap/css/bootstrap.min.css',
         'lib/bootstrap/css/bootstrap-theme.min.css'
     ]

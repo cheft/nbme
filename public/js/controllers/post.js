@@ -1,6 +1,7 @@
 App.PostIndexController = Ember.ArrayController.extend({
     actions: {
         removeItem: function(post) {
+            post.removeComments();
             post.deleteRecord();
             post.save();
         }
@@ -27,7 +28,8 @@ App.PostViewController = Ember.ObjectController.extend({
         },
         comment: function(post) {
             var comment = this.store.createRecord('comment', {
-                body: post.get('newComment')
+                body: post.get('newComment'),
+                date: new Date()
             });
             post.set('newComment', '');
             comment.save().then(function(c) {

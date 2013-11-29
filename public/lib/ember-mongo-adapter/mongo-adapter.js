@@ -26,7 +26,7 @@ Ember.PartAdapter = DS.RESTAdapter.extend({
         return this.ajax(this.buildURL(type.typeKey, id), 'PUT', {
             data: data
         });
-    },
+    }
 });
 
 Ember.FullSerializer = DS.RESTSerializer.extend({
@@ -145,6 +145,6 @@ Ember.FullAdapter = DS.RESTAdapter.extend({
         return this.ajax(this.buildURL(type.typeKey, id), 'PUT', {
             data: data
         });
-    },
+    }
 });
 

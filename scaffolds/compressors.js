@@ -16,14 +16,14 @@ module.exports = {
     },
     js: function(req, res) {
         var jses = '';
-        jses = readJsList(__dirname + '/../public', config.jsList, jses);
+        jses = readJsList(__dirname + '/../public', config.js, jses);
         jses = readJs(__dirname + '/../public/js', jses);
         res.attachment('all.js');
         res.send(jses);
     },
     css: function(req, res) {
         var csses = '';
-        csses = readCssList(__dirname + '/../public', config.cssList, csses);
+        csses = readCssList(__dirname + '/../public', config.css, csses);
         csses = readCss(__dirname + '/../public/css', csses);
         res.attachment('all.css');
         res.send(csses);

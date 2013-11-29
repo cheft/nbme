@@ -19,6 +19,7 @@ exports.Route = function(app, modelName) {
     app.post('/' + path, route.create);
     app.put('/' + path + '/:id', route.update);
     app.del('/' + path + '/:id', route.del);
+    app.del('/' + path, route.batchDel);
     app.post('/' + path + '/query', route.query);
 };
 
@@ -34,6 +35,15 @@ var BaseRoute = function(model, service) {
         },
         del: function(req, res) {
             service.del(req.params.id, function(data) {
+                res.json(data);
+            });
+        },
+        batchDel: function(req, res) {
+            var doc = {};
+            if(req.body.ids && req.body.ids.length > 0) {
+                doc._id = {$in: req.body.ids};
+            }
+            service.batchDel(doc, function(data) {
                 res.json(data);
             });
         },

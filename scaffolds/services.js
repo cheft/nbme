@@ -24,6 +24,9 @@ var BaseSvc = function(manager) {
                 _id: id
             }, callback);
         },
+        batchDel: function(doc, callback) {
+            manager.del(doc, callback);
+        },
         update: function(id, doc, callback) {
             manager.update({
                 _id: id
