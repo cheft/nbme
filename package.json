@@ -16,6 +16,7 @@
         "htmlKompressor": "latest",
         "uglify-js": "latest",
         "clean-css": "latest",
-        "node-smushit": "latest"
+        "node-smushit": "latest",
+        "handlebars": "latest"
     }
 }

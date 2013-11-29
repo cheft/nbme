@@ -28,8 +28,7 @@ App.PostViewController = Ember.ObjectController.extend({
         },
         comment: function(post) {
             var comment = this.store.createRecord('comment', {
-                body: post.get('newComment'),
-                date: new Date()
+                body: post.get('newComment')
             });
             post.set('newComment', '');
             comment.save().then(function(c) {

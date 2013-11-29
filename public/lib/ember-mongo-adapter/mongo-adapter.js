@@ -147,4 +147,3 @@ Ember.FullAdapter = DS.RESTAdapter.extend({
         });
     }
 });
-
