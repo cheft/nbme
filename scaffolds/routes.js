@@ -2,12 +2,11 @@ var fs = require('fs');
 var _ = require('underscore');
 var pluralize = require('pluralize');
 
-exports.Route = function(app, modelName) {
-    var path = pluralize(modelName);
-    var model = require('../scaffolds/models')[modelName];
+exports.Route = function(app, model) {
+    var path = pluralize(model.modelName);
     var service = require('../scaffolds/services').Service(model);
     var baseRoute = new BaseRoute(model, service);
-    var route_path = __dirname + '/../routes/' + modelName + '.js';
+    var route_path = __dirname + '/../routes/' + model.modelName + '.js';
     var f = fs.existsSync(route_path);
     var route = {};
     if (f) {

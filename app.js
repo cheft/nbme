@@ -24,6 +24,7 @@ if ('development' == app.get('env')) {
 
 require('./scaffolds/models').scan(app);
 require('./routes').Route(app);
+require('./scaffolds/generates').Generator(app);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));

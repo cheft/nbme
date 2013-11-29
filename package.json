@@ -17,6 +17,6 @@
         "uglify-js": "latest",
         "clean-css": "latest",
         "node-smushit": "latest",
-        "handlebars": "latest"
+        "ejs": "latest"
     }
 }

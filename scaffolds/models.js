@@ -25,8 +25,9 @@ exports.scan = function(app) {
             var modelName = file.replace('.js', '');
             var exp = require(models_path + '/' + file);
             var model = _.isFunction(exp.Model) ? exp.Model() : exp.Model;
-            exports[modelName] = mongoose.model(modelName, model);
-            require(scaffold_route).Route(app, modelName);
+            var m = mongoose.model(modelName, model);
+            exports[modelName] = m;
+            require(scaffold_route).Route(app, m);
         }
     });
 };

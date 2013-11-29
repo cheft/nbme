@@ -1,0 +1,10 @@
+<form>
+    
+    <% for(var p in i) { %><div class="form-group">
+        <label for="<%= p %>"><%= i[p].label %></label>
+        <div class="controls">
+            {{view Ember.TextField valueBinding="<%= p %>" class="form-control" }}
+        </div>
+    </div>
+    <% } %>   
+</form>
