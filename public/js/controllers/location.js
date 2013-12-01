@@ -1,4 +1,4 @@
-App.LocationEditController = Ember.ObjectController.extend({
+NBME.LocationEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(location) {
             location.save();
@@ -10,7 +10,7 @@ App.LocationEditController = Ember.ObjectController.extend({
     }
 });
 
-App.LocationIndexController = Ember.ArrayController.extend({
+NBME.LocationIndexController = Ember.ArrayController.extend({
     actions: {
         removeItem: function(location) {
             location.deleteRecord();

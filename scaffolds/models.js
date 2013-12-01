@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var config = require('../config');
 var fs = require('fs');
 var _ = require('underscore');
-
 mongoose.connect(config.connectionUrl);
 
 var db = mongoose.connection;

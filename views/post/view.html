@@ -1,19 +1,41 @@
-<form role="form">
-    <div class="form-group">
-        <h1>title : {{title}}</h1>
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="page-title">
+            Post
+            <small>Info</small>
+        </h3>
     </div>
-    <div class="form-group">
-        <h3>body : {{body}}</h3>
-    </div>
-</form>
-<hr />
-<h3>comments:</h3>
-{{#each c in comments}}
-<div class="alert alert-warning alert-dismissable">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true" 
-   {{action removeComment this c}}>&times;</button>
-  [{{c.date}}]  <strong>{{c.body}}</strong>
 </div>
-{{/each}}
-<hr/>
-{{render "post/_comment_form" this}}
+<div class="portlet box blue">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-home"> {{#linkTo "index" class="white-font"}}Home{{/linkTo}}</i><i class="fa fa-angle-right"> {{#linkTo "post" class="white-font"}}Post{{/linkTo}}</i>
+        </div>
+        <div class="tools">
+            <a href="javascript:;" class="collapse"></a>
+            <a href="#portlet-config" data-toggle="modal" class="config"></a>
+            <a href="javascript:;" class="reload"></a>
+            <a href="javascript:;" class="remove"></a>
+        </div>
+    </div>
+    <div class="portlet-body form">
+        <form class="form-horizontal form-bordered">
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="control-label col-md-3">标题</label>
+                    <div class="col-md-6">
+                        <p class="form-control-static">{{title}}</p>
+                    </div>
+                </div>
+                <div class="form-group last">
+                    <label class="col-md-3 control-label">内容</label>
+                    <div class="col-md-6">
+                        <p class="form-control-static">{{body}}</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{{render "post/comment_form" this}}
+

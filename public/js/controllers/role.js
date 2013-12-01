@@ -1,4 +1,4 @@
-App.RoleIndexController = Ember.ArrayController.extend({
+NBME.RoleIndexController = Ember.ArrayController.extend({
     actions: {
         removeItem: function(role) {
             role.deleteRecord();
@@ -7,7 +7,7 @@ App.RoleIndexController = Ember.ArrayController.extend({
     }
 });
 
-App.RoleEditController = Ember.ObjectController.extend({
+NBME.RoleEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(role) {
             role.save();
@@ -16,7 +16,7 @@ App.RoleEditController = Ember.ObjectController.extend({
     }
 });
 
-App.RoleViewController = Ember.ObjectController.extend({
+NBME.RoleViewController = Ember.ObjectController.extend({
     actions: {
         
     }

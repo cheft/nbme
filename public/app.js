@@ -1,4 +1,4 @@
-var App = Ember.Application.create({
+var NBME = Ember.Application.create({
     LOG_TRANSITIONS: true,
     ready: function() {
         this.initViews();
@@ -10,7 +10,7 @@ var App = Ember.Application.create({
     }
 });
 
-App.Router.map(function() {
+NBME.Router.map(function() {
     this.route('index', {
         path: '/'
     });
@@ -33,18 +33,7 @@ App.Router.map(function() {
             path: '/:user_id'
         });
     });
-    this.resource('post', function() {
-        this.route('new', {
-            path: '/new'
-        });
-        this.route('view', {
-            path: '/view/:post_id'
-        });
-        this.route('edit', {
-            path: '/:post_id'
-        });
-    });
 });
 
-App.ApplicationSerializer = Ember.PartSerializer;
-App.ApplicationAdapter = Ember.PartAdapter;
+NBME.ApplicationSerializer = Ember.PartSerializer;
+NBME.ApplicationAdapter = Ember.PartAdapter;

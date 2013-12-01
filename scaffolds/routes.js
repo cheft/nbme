@@ -41,10 +41,10 @@ var BaseRoute = function(model, service) {
             var doc = {};
             if(req.body.ids && req.body.ids.length > 0) {
                 doc._id = {$in: req.body.ids};
+                service.batchDel(doc, function(data) {
+                    res.json(data);
+                });
             }
-            service.batchDel(doc, function(data) {
-                res.json(data);
-            });
         },
         update: function(req, res) {
             var doc = req.body[model.modelName];

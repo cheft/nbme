@@ -1,4 +1,4 @@
-App.Post = DS.Model.extend({
+NBME.Post = DS.Model.extend({
     title: DS.attr('string'),
     body: DS.attr('string'),
     comments: DS.hasMany('comment', {
@@ -6,15 +6,15 @@ App.Post = DS.Model.extend({
     }),
     removeComments: function() {
         this.get('comments').then(function(c) {
-        	var adapter = App.ApplicationAdapter.create();
+        	var adapter = NBME.ApplicationAdapter.create();
             var ids = c.mapProperty('id');
-            return adapter.ajax(adapter.buildURL(App.Comment.typeKey), 
+            return adapter.ajax(adapter.buildURL(NBME.Comment.typeKey), 
             	'DELETE', { data: { ids: ids } });
         });
     }
 });
 
-App.Comment = DS.Model.extend({
+NBME.Comment = DS.Model.extend({
     body: DS.attr('string'),
     date: DS.attr('date', {defaultValue: new Date()})
 });

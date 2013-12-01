@@ -1,4 +1,4 @@
-App.UserIndexController = Ember.ArrayController.extend({
+NBME.UserIndexController = Ember.ArrayController.extend({
     actions: {
         removeItem: function(user) {
             user.deleteRecord();
@@ -7,7 +7,7 @@ App.UserIndexController = Ember.ArrayController.extend({
     }
 });
 
-App.UserEditController = Ember.ObjectController.extend({
+NBME.UserEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(user) {
             user.save();

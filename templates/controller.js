@@ -1,4 +1,4 @@
-App.<%= M %>IndexController = Ember.ArrayController.extend({
+NBME.<%= M %>IndexController = Ember.ArrayController.extend({
     actions: {
         removeItem: function(<%= m %>) {
             <%= m %>.deleteRecord();
@@ -7,7 +7,7 @@ App.<%= M %>IndexController = Ember.ArrayController.extend({
     }
 });
 
-App.<%= M %>EditController = Ember.ObjectController.extend({
+NBME.<%= M %>EditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(<%= m %>) {
             <%= m %>.save();
@@ -16,7 +16,7 @@ App.<%= M %>EditController = Ember.ObjectController.extend({
     }
 });
 
-App.<%= M %>ViewController = Ember.ObjectController.extend({
+NBME.<%= M %>ViewController = Ember.ObjectController.extend({
     actions: {
         
     }

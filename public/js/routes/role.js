@@ -1,4 +1,4 @@
-App.Router.map(function() {
+NBME.Router.map(function() {
     this.resource('role', function() {
         this.route('new', {path: '/new'});
         this.route('view', {path: '/view/:role_id'});
@@ -6,25 +6,25 @@ App.Router.map(function() {
     });
 });
 
-App.RoleIndexRoute = Ember.Route.extend({
+NBME.RoleIndexRoute = Ember.Route.extend({
     model: function() {
        return this.store.find('role');
     }
 });
 
-App.RoleViewRoute = Ember.Route.extend({
+NBME.RoleViewRoute = Ember.Route.extend({
     setupController: function(controller, model) {
         controller.set('content', model);
     }
 });
 
-App.RoleEditRoute = Ember.Route.extend({
+NBME.RoleEditRoute = Ember.Route.extend({
     setupController: function(controller, model) {
         controller.set('content', model);
     }
 });
 
-App.RoleNewRoute = Ember.Route.extend({
+NBME.RoleNewRoute = Ember.Route.extend({
     setupController: function() {
         var role = this.store.createRecord('role');
         this.controllerFor('role.edit').set('content', role);

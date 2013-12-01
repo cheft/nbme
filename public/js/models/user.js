@@ -1,4 +1,4 @@
-App.User = DS.Model.extend({
+NBME.User = DS.Model.extend({
     username: DS.attr('string'),
     hashpwd: DS.attr('string'),
     sex: DS.attr('string'),
@@ -8,15 +8,15 @@ App.User = DS.Model.extend({
     addresses: DS.hasMany('address')
 });
 
-App.Address = DS.Model.extend({
+NBME.Address = DS.Model.extend({
     city: DS.attr('string'),
     street: DS.attr('string')
 });
 
-App.About = DS.Model.extend({
+NBME.About = DS.Model.extend({
     desc: DS.attr('string'),
     card: DS.attr('string')
 });
 
-App.UserSerializer = Ember.FullSerializer;
-App.UserAdapter = Ember.FullAdapter;
+NBME.UserSerializer = Ember.FullSerializer;
+NBME.UserAdapter = Ember.FullAdapter;

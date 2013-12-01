@@ -1,16 +1,16 @@
-App.UserIndexRoute = Ember.Route.extend({
+NBME.UserIndexRoute = Ember.Route.extend({
     model: function() {
        return this.store.find('user');
     }
 });
 
-App.UserEditRoute = Ember.Route.extend({
+NBME.UserEditRoute = Ember.Route.extend({
     setupController: function(controller, model) {
         controller.set('content', model);
     }
 });
 
-App.UserNewRoute = Ember.Route.extend({
+NBME.UserNewRoute = Ember.Route.extend({
     setupController: function() {
         var about = this.store.createRecord('about');
         var address = this.store.createRecord('address');

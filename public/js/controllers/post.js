@@ -1,4 +1,4 @@
-App.PostIndexController = Ember.ArrayController.extend({
+NBME.PostIndexController = Ember.ArrayController.extend({
     actions: {
         removeItem: function(post) {
             post.removeComments();
@@ -8,7 +8,7 @@ App.PostIndexController = Ember.ArrayController.extend({
     }
 });
 
-App.PostEditController = Ember.ObjectController.extend({
+NBME.PostEditController = Ember.ObjectController.extend({
     actions: {
         updateItem: function(post) {
             post.save();
@@ -17,7 +17,7 @@ App.PostEditController = Ember.ObjectController.extend({
     }
 });
 
-App.PostViewController = Ember.ObjectController.extend({
+NBME.PostViewController = Ember.ObjectController.extend({
     actions: {
         removeComment: function(post, comment) {
             post.get('comments').removeObject(comment);

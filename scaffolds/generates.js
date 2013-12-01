@@ -7,7 +7,9 @@ var Schema = mongoose.Schema;
 var types = {
     string: String,
     date: Date,
-    array: Array
+    array: Array,
+    number: Number,
+    boolean: Boolean
 };
 
 var paths = {

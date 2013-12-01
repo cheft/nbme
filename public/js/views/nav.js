@@ -1,4 +1,4 @@
-App.NavView = Ember.View.extend({
+NBME.NavView = Ember.View.extend({
     tagName: 'li',
     classNameBindings: ['active'],
 
