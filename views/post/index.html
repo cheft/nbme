@@ -1,15 +1,25 @@
 <div class="row">
     <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">
             Post
             <small>List</small>
         </h3>
+        <ul class="page-breadcrumb breadcrumb curr_bg">
+            <li>
+                <i class="fa fa-home"></i>
+                {{#linkTo "index" class="curr_btn"}}Home{{/linkTo}}
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>{{#linkTo "post" class="curr_btn"}}Post{{/linkTo}}
+            </li>
+        </ul>
     </div>
 </div>
-<div class="portlet box blue">
+<div class="portlet box curr_bg">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-home"> {{#linkTo "index" class="white-font"}}Home{{/linkTo}}</i><i class="fa fa-angle-right"> {{#linkTo "post" class="white-font"}}Post{{/linkTo}}</i>
+            博客
         </div>
         <div class="tools">
             <a href="javascript:;" class="collapse"></a>
@@ -22,20 +32,20 @@
         <div class="table-toolbar">
             <div class="btn-group">
                 {{#linkTo "post.new"}}
-                <button id="sample_editable_1_new" class="btn blue">
-                    Add <i class="fa fa-plus-square"></i>
+                <button id="sample_editable_1_new" class="btn curr_btn">
+                    Add
                 </button>
                 {{/linkTo}}
             </div>
             <div class="btn-group pull-right">
-                <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
+                <button class="btn dropdown-toggle curr_btn" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
                 </button>
                 <ul class="dropdown-menu pull-right">
-                    <li><a href="#">Print</a>
+                    <li><a href="#" class="curr_btn">Print</a>
                     </li>
-                    <li><a href="#">Save as PDF</a>
+                    <li><a href="#" class="curr_btn">Save as PDF</a>
                     </li>
-                    <li><a href="#">Export to Excel</a>
+                    <li><a href="#" class="curr_btn">Export to Excel</a>
                     </li>
                 </ul>
             </div>

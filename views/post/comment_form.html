@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-md-12">
+        <!-- BEGIN PAGE TITLE & BREADCRUMB-->
         <h3 class="page-title">
             Comment
             <small>List</small>
@@ -11,14 +12,14 @@
     <button type="button" class="close" data-dismiss="alert" {{action removeComment this c}}></button>
     <h4 class="alert-heading">Comment</h4>{{c.date}}
     <p>{{c.body}}</p>
-    <p><a class="btn blue">Do this</a>
+    <p><a class="btn curr_btn">Do this</a>
     </p>
 </div>
 {{/each}}
-<div class="portlet box blue">
+<div class="portlet box curr_bg">
     <div class="portlet-title">
         <div class="caption">
-            <i class="fa fa-home"></i>Comment
+            回复
         </div>
         <div class="tools">
             <a href="javascript:;" class="collapse"></a>
@@ -28,7 +29,6 @@
         </div>
     </div>
     <div class="portlet-body form">
-
         <form class="form-horizontal">
             <div class="form-body">
                 <div class="form-group last">
@@ -40,7 +40,7 @@
             </div>
             <div class="form-actions fluid">
                 <div class="col-md-offset-3 col-md-9">
-                    <button type="submit" class="btn blue" {{action comment this}}>回复</button>
+                    <button type="submit" class="btn curr_btn" {{action comment this}}>回复</button>
                 </div>
             </div>
         </form>
