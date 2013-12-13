@@ -4,7 +4,15 @@ module.exports = {
 
     dev: true,
     js: [
-        'lib/metronic/plugins/jquery-1.10.2.min.js',
+        'bower/jquery/jquery.js',
+        'bower/underscore/underscore.js',
+        'bower/handlebars/handlebars.js',
+        'bower/ember/ember.js',
+        'bower/ember-data-shim/ember-data.js',
+        'bower/ember-auth/dist/ember-auth.js',
+        'bower/ember-simple-auth/ember-simple-auth.js',
+        'lib/ember-mongo-adapter/mongo-adapter.js',
+
         'lib/metronic/plugins/jquery-migrate-1.2.1.min.js',
         'lib/metronic/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js',
         'lib/metronic/plugins/bootstrap/js/bootstrap.min.js',
@@ -13,6 +21,8 @@ module.exports = {
         'lib/metronic/plugins/jquery.blockui.min.js',
         'lib/metronic/plugins/jquery.cookie.min.js',
         'lib/metronic/plugins/uniform/jquery.uniform.min.js',
+        'lib/metronic/plugins/jquery-validation/dist/jquery.validate.min.js',
+        'lib/metronic/plugins/select2/select2.min.js',
         'lib/metronic/plugins/jqvmap/jqvmap/jquery.vmap.js',
         'lib/metronic/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js',
         'lib/metronic/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js',
@@ -30,11 +40,7 @@ module.exports = {
         'lib/metronic/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js',
         'lib/metronic/plugins/jquery.sparkline.min.js',
         'lib/metronic/scripts/app.js',
-        'lib/underscore/underscore.js',
-        'lib/handlebars/handlebars.js',
-        'lib/ember/ember.js',
-        'lib/ember-data/ember-data.js',
-        'lib/ember-mongo-adapter/mongo-adapter.js',
+        'lib/metronic/scripts/login.js',
         'app.js'
     ],
     css: [
@@ -47,12 +53,15 @@ module.exports = {
         'lib/metronic/plugins/fullcalendar/fullcalendar/fullcalendar.css',
         'lib/metronic/plugins/jqvmap/jqvmap/jqvmap.css',
         'lib/metronic/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css',
+        'lib/metronic/plugins/font-awesome/css/font-awesome.min.css',
+        'lib/metronic/plugins/select2/select2_metro.css',
         'lib/metronic/css/style-metronic.css',
         'lib/metronic/css/style.css',
         'lib/metronic/css/style-responsive.css',
         'lib/metronic/css/plugins.css',
         'lib/metronic/css/pages/tasks.css',
-        //'lib/metronic/css/themes/default.css',
-        'lib/metronic/css/custom.css'
+        'lib/metronic/css/pages/login.css',
+        'lib/metronic/css/pages/lock.css'
     ]
 };
+

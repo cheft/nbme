@@ -9,7 +9,7 @@ var config = require('../config');
 module.exports = {
     html: function(req, res) {
         var views_path = __dirname + '/../views';
-        var htmls = [];
+        var htmls = {};
         readHtml(views_path, views_path, htmls);
         res.attachment('hbs.js');
         res.send('window.hbs = ' + JSON.stringify(htmls));
@@ -48,10 +48,11 @@ var readHtml = function(basePath, path, htmls) {
                     .replace(basePath + '/', '').replace('.html', '');
                 var tmp = fs.readFileSync(path + '/' + file);
                 if(config.dev) {
-                    htmls.push({name: name,value: tmp.toString()});
+                    htmls[name] = tmp.toString();
                 }else {
                     var value = kompressor(tmp.toString(), true);
-                    htmls.push({name: name,value: value});
+                    var obj = {};
+                    htmls[name] = value;
                 }
             }
         } else {

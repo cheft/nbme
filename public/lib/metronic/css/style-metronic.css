@@ -350,13 +350,13 @@ Metro icons
   margin: 4px 0 0 5px;
 }
 
-.btn.m-icon.m-icon-only {
+.btn.m-icon.m-icon-only { 
   padding: 7px 10px 7px 6px;
 }
 
 /* white icon */
 .m-icon-white {
-  background-image: url(../img/syncfusion-icons-white.png);
+  background-image: url(/img/syncfusion-icons-white.png);
 }
 
 /*  Misc */

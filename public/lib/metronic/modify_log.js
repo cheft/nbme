@@ -56,3 +56,6 @@ $('#theme_switch > li').each(function(i, e) {
         setColor($(e).attr('data-style'));
     });
 });
+
+// 在css/style-metronic.css中将
+// ../img/syncfusion-icons-white.png 改成 /img/syncfusion-icons-white.png

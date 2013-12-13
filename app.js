@@ -1,8 +1,8 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var app = express();
 var compressor = require('./scaffolds/compressors');
+var app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.favicon());

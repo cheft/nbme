@@ -9,7 +9,10 @@
         "express": "latest",
         "mongoose": "latest",
         "underscore": "latest",
-        "pluralize": "latest"
+        "pluralize": "latest",
+        "everyauth": "latest",
+        "jugglingdb": "latest",
+        "jugglingdb-mongodb": "latest"
     },
     "devDependencies": {
         "htmlKompressor": "latest",

@@ -324,7 +324,12 @@
                     <li><a href="#"><i class="fa fa-tasks"></i> My Tasks <span class="badge badge-success">7</span></a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a>
+                    <li>
+                    {{#if session.isAuthenticated}}
+                        <a href="javascript:;" {{ action 'logout' }}><i class="fa fa-key"></i> Log Out</a>
+                    {{else}}
+                        <a href="javascript:;" {{ action 'login' }}><i class="fa fa-key"></i> Log In</a>
+                    {{/if}}
                     </li>
                     <li><a href="extra_lock.html"><i class="fa fa-lock"></i> Lock Screen</a>
                     </li>
@@ -335,17 +340,17 @@
                         <i class="fa fa-tachometer"></i> Switch Theme</a>
                         </a>
                         <ul class="dropdown-menu" id="theme_switch">
-                            <li data-style="default"><a href="#"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #333438;float: left;border:solid 1px #28B779;"></i> Default</a>
+                            <li data-style="default"><a href="javascript:;"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #333438;float: left;border:solid 1px #28B779;"></i> Default</a>
                             </li>
-                            <li  data-style="blue"><a href="#"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #0d638f;float: left;border:solid 1px #28B779;"></i> Blue</a>
+                            <li  data-style="blue"><a href="javascript:;"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #0d638f;float: left;border:solid 1px #28B779;"></i> Blue</a>
                             </li>
-                            <li  data-style="brown"><a href="#"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #623F18;float: left;border:solid 1px #28B779;"></i> Brown</a>
+                            <li  data-style="brown"><a href="javascript:;"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #623F18;float: left;border:solid 1px #28B779;"></i> Brown</a>
                             </li>
-                            <li  data-style="purple"><a href="#"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #701584;float: left;border:solid 1px #28B779;"></i> Purple</a>
+                            <li  data-style="purple"><a href="javascript:;"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #701584;float: left;border:solid 1px #28B779;"></i> Purple</a>
                             </li>
-                            <li  data-style="light"><a href="#"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #ffffff;float: left;border:solid 1px #28B779;"></i> Light</a>
+                            <li  data-style="light"><a href="javascript:;"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #ffffff;float: left;border:solid 1px #28B779;"></i> Light</a>
                             </li>
-                            <li  data-style="grey"><a href="#"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #6d6d6d;float: left;border:solid 1px #28B779;"></i> Grey</a>
+                            <li  data-style="grey"><a href="javascript:;"><i class="fa fa-magic"></i><i style="width: 20px;height: 20px;margin: 0 9px;background: #6d6d6d;float: left;border:solid 1px #28B779;"></i> Grey</a>
                             </li>
                         </ul>
                     </li>
@@ -388,7 +393,7 @@
             <span class="title">Dashboard</span>
             <span class="selected"></span>
             {{/linkTo}} {{/view}} {{#view NBME.MenuView class="last"}} {{#linkTo "post"}}
-            <i class="fa fa-bar-chart-o"></i> 
+            <i class="fa fa-keyboard-o"></i> 
             <span class="title">Post</span>
             <span class="selected"></span>
             {{/linkTo}} {{/view}} {{#view NBME.MenuView class="last"}} {{#linkTo "about"}}

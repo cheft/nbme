@@ -4,9 +4,9 @@ var NBME = Ember.Application.create({
         this.initViews();
     },
     initViews: function() {
-        _.each(window.hbs, function(i) {
-            Ember.TEMPLATES[i.name] = Ember.Handlebars.compile(i.value);
-        });
+        for(var p in window.hbs) {
+            Ember.TEMPLATES[p] = Ember.Handlebars.compile(window.hbs[p]);
+        };
     }
 });
 
@@ -17,23 +17,32 @@ NBME.Router.map(function() {
     this.route('about', {
         path: '/about'
     });
-    this.resource('location', function() {
-        this.route('new', {
-            path: '/new'
-        });
-        this.route('edit', {
-            path: '/:location_id'
-        });
-    });
-    this.resource('user', function() {
-        this.route('new', {
-            path: '/new'
-        });
-        this.route('edit', {
-            path: '/:user_id'
-        });
-    });
 });
 
 NBME.ApplicationSerializer = Ember.PartSerializer;
 NBME.ApplicationAdapter = Ember.PartAdapter;
+
+//  auth
+/*
+Ember.Application.initializer({
+    name: 'authentication',
+    initialize: function(container, application) {
+        Ember.SimpleAuth.setup(container, application);
+    }
+});
+
+NBME.Router.map(function() {
+    this.route('login');
+    this.route('protected');
+});
+
+NBME.ApplicationRoute = Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin, {
+    actions: {
+        login: function() {
+            window.open('');
+        }
+    }
+});
+
+NBME.ProtectedRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin);
+NBME.LoginController = Ember.Controller.extend(Ember.SimpleAuth.LoginControllerMixin);*/
