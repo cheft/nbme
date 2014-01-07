@@ -22,6 +22,8 @@ if ('development' == app.get('env')) {
     app.get('/img', compressor.img);
 }
 
+require('./tests/jugglingdb');
+
 require('./scaffolds/models').scan(app);
 require('./routes').Route(app);
 require('./scaffolds/generates').Generator(app);
