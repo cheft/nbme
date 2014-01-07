@@ -21,7 +21,7 @@ module.exports = {
         'lib/metronic/plugins/jquery.blockui.min.js',
         'lib/metronic/plugins/jquery.cookie.min.js',
         'lib/metronic/plugins/uniform/jquery.uniform.min.js',
-        'lib/metronic/plugins/jquery-validation/dist/jquery.validate.min.js',
+        // 'lib/metronic/plugins/jquery-validation/dist/jquery.validate.min.js',
         'lib/metronic/plugins/select2/select2.min.js',
         'lib/metronic/plugins/jqvmap/jqvmap/jquery.vmap.js',
         'lib/metronic/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js',

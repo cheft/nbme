@@ -12,7 +12,9 @@
         "pluralize": "latest",
         "everyauth": "latest",
         "jugglingdb": "latest",
-        "jugglingdb-mongodb": "latest"
+        "jugglingdb-mongodb": "latest",
+        "jugglingdb-mysql": "latest"
+
     },
     "devDependencies": {
         "htmlKompressor": "latest",
